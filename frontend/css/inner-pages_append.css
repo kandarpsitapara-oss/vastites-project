@@ -1,0 +1,53 @@
+/* Mobile Accordion Header - Hidden by default on desktop */
+.mobile-accordion-header {
+    display: none;
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mobile-accordion-header.active {
+    background: #0f172a;
+    color: #fff;
+    border-color: #0f172a;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.mobile-accordion-header::after {
+    content: '\f107';
+    /* FontAwesome chevron-down */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-accordion-header.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Ensure pane looks connected to header on mobile */
+@media (max-width: 768px) {
+    .v-tab-pane.active {
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+}

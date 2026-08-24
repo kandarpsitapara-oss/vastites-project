@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "site_contents",
+  "info": {
+    "singularName": "site-content",
+    "pluralName": "site-contents",
+    "displayName": "SiteContent"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "page",
+        "header",
+        "footer"
+      ]
+    },
+    "html_content": {
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "meta_title": {
+      "type": "string"
+    },
+    "meta_description": {
+      "type": "text"
+    }
+  }
+}

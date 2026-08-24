@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vastites builds conversational AI chatbots — NLP-powered virtual assistants for customer service, sales, and internal automation.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://vastites.com/html/ai-ml/chatbot-development.html">
+    <title>Chatbot Development | Conversational AI Solutions | VAST ITES</title>
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/sections.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/inner-pages.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* PREMIUM HERO SECTION (Chatbot Development) */
+        .chatbot-hero-new {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #2d4a6f 100%);
+            padding: 160px 0 140px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* Animated Background Grid */
+        .hero-bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 192, 29, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 192, 29, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        .hero-accent-circle-1 {
+            position: absolute;
+            top: -15%;
+            right: -8%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 192, 29, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-accent-circle-2 {
+            position: absolute;
+            bottom: -15%;
+            left: -8%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-floating-node {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .node-1 {
+            top: 15%;
+            right: 12%;
+            width: 10px;
+            height: 10px;
+            background: #FFC01D;
+            opacity: 0.6;
+            box-shadow: 0 0 20px rgba(255, 192, 29, 0.4);
+        }
+
+        .node-2 {
+            top: 35%;
+            right: 8%;
+            width: 14px;
+            height: 14px;
+            background: #8b5cf6;
+            opacity: 0.5;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .node-3 {
+            top: 55%;
+            right: 18%;
+            width: 8px;
+            height: 8px;
+            background: #FFC01D;
+            opacity: 0.7;
+        }
+
+        .node-4 {
+            bottom: 20%;
+            right: 15%;
+            width: 12px;
+            height: 12px;
+            background: #8b5cf6;
+            opacity: 0.4;
+        }
+
+        .node-5 {
+            top: 25%;
+            left: 10%;
+            width: 8px;
+            height: 8px;
+            background: #FFC01D;
+            opacity: 0.5;
+        }
+
+        .hero-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 1200px) {
+            .hero-title-main {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .chatbot-hero-new {
+                padding: 120px 0 100px;
+            }
+
+            .hero-grid-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-grid-container>div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-title-main {
+                font-size: 44px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title-main {
+                font-size: 38px;
+            }
+
+            .hero-desc-main {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .chatbot-hero-new {
+                padding: 80px 0 60px;
+            }
+
+            .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .hero-title-main {
+                font-size: 30px !important;
+                letter-spacing: -1px;
+                text-align: center;
+            }
+
+            .hero-badge {
+                padding: 6px 15px;
+                margin-bottom: 20px;
+                display: flex !important;
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-badge span {
+                font-size: 12px;
+            }
+
+            .hero-content-left div[style*="display: flex"] {
+                flex-direction: column !important;
+                width: 100%;
+                gap: 12px !important;
+                align-items: center !important;
+            }
+
+            .hero-btn-primary,
+            .hero-btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title-main {
+                font-size: 28px !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .hero-title-main {
+                font-size: 24px !important;
+            }
+
+            .hero-btn-primary,
+            .hero-btn-secondary {
+                padding: 12px 20px;
+            }
+
+            .hero-badge span {
+                font-size: 11px;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 192, 29, 0.1);
+            border: 1px solid rgba(255, 192, 29, 0.3);
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #FFC01D;
+            border-radius: 50%;
+        }
+
+        .hero-badge span {
+            color: #FFC01D;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-title-main {
+            color: #fff;
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 28px;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-title-highlight {
+            background: linear-gradient(135deg, #FFC01D 0%, #ffdb4d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc-main {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn-primary {
+            display: inline-block;
+            padding: 16px 36px;
+            background: #FFC01D;
+            color: #0a1628;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 192, 29, 0.3);
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 192, 29, 0.4);
+        }
+
+        .hero-btn-secondary {
+            display: inline-block;
+            padding: 16px 36px;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .hero-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #fff;
+        }
+
+        .stat-card-premium {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .stat-card-premium:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 192, 29, 0.3);
+        }
+
+        .stat-icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon-yellow {
+            background: rgba(255, 192, 29, 0.15);
+            color: #FFC01D;
+        }
+
+        .stat-icon-purple {
+            background: rgba(139, 92, 246, 0.15);
+            color: #8b5cf6;
+        }
+
+        .stat-content h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+        }
+
+        .stat-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (Strict 4-Column Mega Menu) -->
+    <div id="site-header"></div>
+
+    <div id="page-content"></div>
+
+    <div id="site-footer"></div>
+
+    <script src="../../js/main.js"></script>
+
+
+
+    <script src="/js/strapi-config.js"></script>
+    <script src="/js/page-loader.js"></script>
+    <script src="/js/layout-loader.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+/* Design Tokens */
+:root {
+    /* Colors */
+    --color-primary: #1e293b;
+    /* Dark Navy - Headers, Footer */
+    --color-secondary: #007BFF;
+    /* Placeholder for secondary, if needed */
+    --color-accent: #FFC01D;
+    /* Yellow - Buttons, Highlights */
+
+    --color-text-body: #555555;
+    /* Gray for body text */
+    --color-text-dark: #1e293b;
+    /* Dark for headings */
+    --color-text-light: #FFFFFF;
+    /* White text */
+
+    --color-bg-light: #FFFFFF;
+    --color-bg-dark: #1e293b;
+    /* Dark Navy - Footer, dark sections */
+    --color-bg-gray: #F8F9FA;
+    /* Minimal gray background */
+
+    --color-border: #E5E5E5;
+
+    /* Typography */
+    --font-main: 'Inter', sans-serif;
+
+    /* Font Sizes */
+    --font-size-h1: 54px;
+    --font-size-h2: 36px;
+    --font-size-h3: 24px;
+    --font-size-h4: 20px;
+    --font-size-body: 16px;
+    --font-size-small: 14px;
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+
+    /* Spacing & Layout */
+    --container-width: 1170px;
+    --header-height: 90px;
+    --section-padding: 80px;
+    --gutter-width: 15px;
+
+    /* Components */
+    --border-radius-sm: 4px;
+    --border-radius-lg: 8px;
+    --border-radius-btn: 0px;
+    /* Reference uses square buttons mostly */
+
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}

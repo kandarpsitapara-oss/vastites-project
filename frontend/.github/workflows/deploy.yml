@@ -1,0 +1,58 @@
+name: Deploy Vastites Portal
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create Environment Configs from Secrets
+        run: |
+          # Inject Frontend env
+          echo "${{ secrets.FRONTEND_ENV }}" > .env
+          
+          # Inject Backend env (ensuring folder exists)
+          mkdir -p vastites-cms
+          echo "${{ secrets.STRAPI_ENV }}" > vastites-cms/.env
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'unnecessary'
+
+      - name: Install Rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
+      - name: Rsync Files to Server
+        # We purposely omit --delete to prevent wiping server-side uploaded media files in Strapi
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude '.git/' --exclude '.github/' ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/vastites.ca/
+
+      - name: Execute Server Deployment Scripts
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # These scripts run natively on the server utilizing the server's Node/PM2/NPM instances
+          script: |
+            echo "==== Generating Frontend Config ===="
+            cd /var/www/vastites.ca
+            npm install
+            npm run setup
+            
+            echo "==== Building Strapi Backend ===="
+            cd /var/www/vastites.ca/vastites-cms
+            npm install
+            npm run build
+            
+            echo "==== Restarting PM2 Process ===="
+            pm2 restart vastites-strapi

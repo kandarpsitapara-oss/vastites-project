@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read the Vastites blog for insights on software development, cloud computing, AI/ML, DevOps, and emerging technology trends.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://vastites.com/html/blog.html">
+    <title>Blog - VAST ITES</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/inner-pages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Blog Hero Section */
+        .blog-hero-section {
+            position: relative;
+            padding: 180px 0 120px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+
+        .blog-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 192, 29, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .blog-hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blog-hero-section .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 30px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-hero-section .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-hero-section .breadcrumb a:hover {
+            color: var(--color-accent);
+        }
+
+        .blog-hero-section .breadcrumb span {
+            margin-right: 10px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .blog-hero-section .breadcrumb .current {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .blog-hero-title {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .title-line {
+            display: block;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .title-line:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .title-line:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .title-highlight {
+            background: linear-gradient(135deg, #FFC01D 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+
+        .blog-hero-divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            margin: 40px auto 0;
+            border-radius: 2px;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+
+        /* Responsive Design for Hero */
+        @media (max-width: 768px) {
+            .blog-hero-section {
+                padding: 140px 0 80px;
+            }
+
+            .blog-hero-title {
+                font-size: 48px;
+            }
+
+            .blog-hero-description {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero-title {
+                font-size: 36px;
+            }
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            background: #f0f0f0;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .blog-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--color-text-dark);
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.2s ease;
+        }
+
+        .read-more:hover {
+            gap: 12px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="site-header"></div>
+
+    <div id="page-content"></div>
+
+    <div id="site-footer"></div>
+
+    <script src="../js/main.js"></script>
+
+    
+
+    <script src="/js/strapi-config.js"></script>
+    <script src="/js/page-loader.js"></script>
+    <script src="/js/layout-loader.js"></script>
+</body>
+
+</html>
+
+
+

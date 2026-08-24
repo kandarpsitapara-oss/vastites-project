@@ -1,0 +1,19 @@
+vastites-cms/node_modules/
+vastites-cms/.env
+vastites-cms/.tmp/
+vastites-cms/build/
+vastites-cms/dist/
+.env
+node_modules/
+package-lock.json
+js/strapi-config.js
+
+# Generated frontend config
+js/strapi-config.js
+
+# Backup and temp files
+*.bak.*
+*.backup.*
+
+# Ignore backend upload backups
+vastites-cms/public/uploads_backup_*/

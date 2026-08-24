@@ -1,0 +1,26 @@
+/* Layout & Grid System */
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive adjustments for grid done in responsive.css */

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vastites delivers end-to-end software development services including custom apps, enterprise solutions, product engineering, and maintenance.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://vastites.com/html/software-development.html">
+    <title>Software Development | VaST ITES</title>
+    <meta name="description"
+        content="Top-ranked global software development company creating scalable, secure, and high-performance enterprise solutions.">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/inner-pages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================================================
+           SOFTWARE DEVELOPMENT PAGE — MOBILE RESPONSIVE STYLES
+           Breakpoints: 768px | 425px | 375px | 320px
+           ============================================================ */
+
+        /* ── Tablet (768px) ── */
+        @media (max-width: 768px) {
+
+            /* Hero Section */
+            .inner-hero[style] {
+                padding: 110px 0 60px !important;
+            }
+
+            .hero-split-layout {
+                display: block !important;
+            }
+
+            .hero-text h1 {
+                font-size: 36px !important;
+                letter-spacing: -0.5px !important;
+                margin-bottom: 18px !important;
+            }
+
+            .hero-text p {
+                font-size: 15px !important;
+                margin-bottom: 25px !important;
+                max-width: 100% !important;
+            }
+
+            .hero-image-wrap {
+                display: none !important;
+            }
+
+            /* Hero stats — 3 columns stay but smaller */
+            .hero-stats-grid {
+                gap: 12px !important;
+            }
+
+            .stat-card-futuristic h3 {
+                font-size: 22px !important;
+            }
+
+            .stat-card-futuristic span {
+                font-size: 10px !important;
+            }
+
+            /* Service Tabs — HIDDEN on mobile; accordion used instead */
+            .service-tabs-layout {
+                display: none !important;
+            }
+
+            #service-tabs-nav {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+            }
+
+            #service-tabs-nav li {
+                margin-bottom: 0 !important;
+            }
+
+            #service-tabs-nav .service-tab-link {
+                display: inline-block !important;
+                padding: 10px 16px !important;
+                font-size: 13px !important;
+                border-left: none !important;
+                border-radius: 6px !important;
+                background: #f1f5f9 !important;
+                border: 1px solid #e2e8f0 !important;
+                white-space: nowrap !important;
+            }
+
+            #service-tabs-nav .service-tab-link.active {
+                background: #fca311 !important;
+                color: #0f172a !important;
+                border-color: #fca311 !important;
+            }
+
+            .service-content-col {
+                flex: none !important;
+                width: 100% !important;
+                padding-left: 0 !important;
+            }
+
+            #service-title {
+                font-size: 24px !important;
+            }
+
+            #service-desc {
+                font-size: 15px !important;
+                max-width: 100% !important;
+            }
+
+            /* Mobile Accordion — Visible only on mobile */
+            .service-mobile-accordion {
+                display: block;
+            }
+
+            .svc-acc-item {
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .svc-acc-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 4px;
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 600;
+                color: #0f172a;
+                background: none;
+                border: none;
+                width: 100%;
+                text-align: left;
+                gap: 10px;
+                transition: color 0.2s;
+            }
+
+            .svc-acc-header.active {
+                color: #fca311;
+            }
+
+            .svc-acc-icon {
+                flex-shrink: 0;
+                font-size: 14px;
+                transition: transform 0.3s ease;
+            }
+
+            .svc-acc-header.active .svc-acc-icon {
+                transform: rotate(180deg);
+            }
+
+            .svc-acc-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                padding: 0 4px;
+            }
+
+            .svc-acc-body.open {
+                max-height: 1200px;
+                padding-bottom: 20px;
+            }
+
+            .svc-acc-body p {
+                font-size: 14px;
+                color: #475569;
+                line-height: 1.7;
+                margin-bottom: 12px;
+            }
+
+            .svc-acc-btn {
+                display: inline-block;
+                margin-top: 8px;
+                padding: 12px 24px;
+                background: #fca311;
+                color: #0f172a;
+                font-weight: 700;
+                font-size: 13px;
+                text-decoration: none;
+                border-radius: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* CTA Banner */
+            .cta-banner-wrapper {
+                flex-direction: column !important;
+                padding: 35px 24px !important;
+                text-align: center !important;
+                gap: 25px !important;
+            }
+
+            .cta-banner-wrapper h2 {
+                font-size: 26px !important;
+                line-height: 1.3 !important;
+            }
+
+            .cta-banner-text {
+                min-width: unset !important;
+            }
+
+            /* Section Overview */
+            .section-overview .overview-content h2 {
+                font-size: 24px !important;
+                line-height: 1.4 !important;
+            }
+
+            .section-overview .overview-content p {
+                font-size: 15px !important;
+            }
+
+            /* FAQ */
+            .faq-container h2 {
+                font-size: 26px !important;
+            }
+
+            .faq-question {
+                font-size: 15px !important;
+                padding: 20px 8px !important;
+            }
+
+            .section-service-tabs {
+                padding: 60px 0 !important;
+            }
+
+            .vast-faq {
+                padding: 60px 0 !important;
+            }
+        }
+
+        /* ── Mobile L (425px) ── */
+        @media (max-width: 425px) {
+            .inner-hero[style] {
+                padding: 100px 0 50px !important;
+            }
+
+            .hero-text h1 {
+                font-size: 30px !important;
+            }
+
+            .hero-text p {
+                font-size: 14px !important;
+            }
+
+            .hero-btns .btn {
+                padding: 14px 28px !important;
+                font-size: 15px !important;
+                display: block !important;
+                text-align: center !important;
+            }
+
+            .hero-stats-grid {
+                grid-template-columns: 1fr 1fr 1fr !important;
+            }
+
+            .stat-card-futuristic {
+                padding: 14px 8px !important;
+            }
+
+            .stat-card-futuristic h3 {
+                font-size: 18px !important;
+            }
+
+            #service-title {
+                font-size: 22px !important;
+            }
+
+            .cta-banner-wrapper h2 {
+                font-size: 22px !important;
+            }
+
+            .faq-container h2 {
+                font-size: 22px !important;
+            }
+
+            .faq-question {
+                font-size: 14px !important;
+                gap: 10px !important;
+            }
+        }
+
+        /* ── Mobile M (375px) ── */
+        @media (max-width: 375px) {
+            .hero-text h1 {
+                font-size: 26px !important;
+            }
+
+            .hero-stats-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 8px !important;
+            }
+
+            .stat-card-futuristic {
+                padding: 10px 4px !important;
+            }
+
+            .stat-card-futuristic h3 {
+                font-size: 16px !important;
+            }
+
+            .stat-card-futuristic i {
+                font-size: 16px !important;
+                margin-bottom: 6px !important;
+            }
+
+            #service-tabs-nav .service-tab-link {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+            }
+
+            .cta-banner-wrapper {
+                padding: 28px 16px !important;
+            }
+
+            .cta-banner-wrapper h2 {
+                font-size: 20px !important;
+            }
+
+            .contact-btn {
+                padding: 14px 28px !important;
+                font-size: 15px !important;
+            }
+        }
+
+        /* ── Mobile S (320px) ── */
+        @media (max-width: 320px) {
+            .inner-hero[style] {
+                padding: 90px 0 40px !important;
+            }
+
+            .hero-text h1 {
+                font-size: 22px !important;
+                line-height: 1.2 !important;
+            }
+
+            .hero-text p {
+                font-size: 13px !important;
+            }
+
+            .hero-btns .btn {
+                font-size: 13px !important;
+                padding: 12px 20px !important;
+            }
+
+            .hero-stats-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 6px !important;
+            }
+
+            .stat-card-futuristic {
+                padding: 8px 3px !important;
+            }
+
+            .stat-card-futuristic h3 {
+                font-size: 14px !important;
+            }
+
+            .stat-card-futuristic span {
+                font-size: 8px !important;
+            }
+
+            #service-title {
+                font-size: 18px !important;
+            }
+
+            #service-desc {
+                font-size: 13px !important;
+            }
+
+            #service-tabs-nav .service-tab-link {
+                font-size: 11px !important;
+                padding: 7px 10px !important;
+            }
+
+            .section-overview .overview-content h2 {
+                font-size: 20px !important;
+            }
+
+            .faq-container h2 {
+                font-size: 20px !important;
+            }
+
+            .faq-question {
+                font-size: 13px !important;
+                padding: 16px 6px !important;
+            }
+
+            .cta-banner-wrapper h2 {
+                font-size: 18px !important;
+            }
+
+            .cta-banner-wrapper {
+                padding: 24px 14px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+        <!-- HEADER (Strict 4-Column Mega Menu) -->
+    <div id="site-header"></div>
+
+    <div id="page-content"></div>
+
+    <div id="site-footer"></div>
+
+    <script>
+        // Show/hide tabs vs accordion based on screen width
+        document.addEventListener('page-content-loaded', () => {
+            var tabsSection = document.querySelector('.section-service-tabs:not(.service-mobile-accordion-section)');
+            var accordSection = document.querySelector('.service-mobile-accordion-section');
+
+            function toggleTabsVsAccordion() {
+                if (!tabsSection || !accordSection) return;
+                if (window.innerWidth <= 768) {
+                    tabsSection.style.display = 'none';
+                    accordSection.style.display = 'block';
+                } else {
+                    tabsSection.style.display = 'block';
+                    accordSection.style.display = 'none';
+                }
+            }
+
+            toggleTabsVsAccordion();
+            window.addEventListener('resize', toggleTabsVsAccordion);
+
+            // Desktop tab click logic
+            const desktopTabs = document.querySelectorAll('.service-tab-link');
+            const mobileAccordions = document.querySelectorAll('.svc-acc-item');
+            
+            const titleEl = document.getElementById('service-title');
+            const descEl = document.getElementById('service-desc');
+            const btnEl = document.getElementById('service-btn');
+            const contentArea = document.getElementById('service-content-area');
+
+            if (desktopTabs.length > 0 && mobileAccordions.length > 0) {
+                desktopTabs.forEach((tab, index) => {
+                    tab.addEventListener('click', (e) => {
+                        e.preventDefault();
+
+                        // Remove active class and reset inline styles from all tabs
+                        desktopTabs.forEach(t => {
+                            t.classList.remove('active');
+                            t.style.borderLeft = '4px solid transparent';
+                            t.style.backgroundColor = 'transparent';
+                            t.style.color = '#64748b';
+                            t.style.fontWeight = '500';
+                        });
+                        // Add active class and set active inline styles on the clicked tab
+                        tab.classList.add('active');
+                        tab.style.borderLeft = '4px solid #fca311';
+                        tab.style.backgroundColor = '#f8fafc';
+                        tab.style.color = '#0f172a';
+                        tab.style.fontWeight = '600';
+
+                        // Map clicked tab to corresponding mobile accordion item by index
+                        const correspondingAccordion = mobileAccordions[index];
+                        if (correspondingAccordion && titleEl && descEl && btnEl && contentArea) {
+                            // Extract content from accordion item
+                            const accTitle = correspondingAccordion.querySelector('.svc-acc-header span').textContent;
+                            
+                            const accBody = correspondingAccordion.querySelector('.svc-acc-body');
+                            const paragraphs = Array.from(accBody.querySelectorAll('p'))
+                                .map(p => p.outerHTML)
+                                .join('');
+                            
+                            const accBtn = correspondingAccordion.querySelector('.svc-acc-btn');
+                            const linkHref = accBtn ? accBtn.getAttribute('href') : '#';
+                            const linkText = accBtn ? accBtn.textContent : 'Read More';
+
+                            // Fade out, update content, fade in using existing transition
+                            contentArea.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                titleEl.textContent = accTitle;
+                                descEl.innerHTML = paragraphs;
+                                btnEl.setAttribute('href', linkHref);
+                                btnEl.textContent = linkText;
+                                contentArea.style.opacity = '1';
+                            }, 300);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <script src="../js/main.js"></script>
+    
+
+    <script src="/js/strapi-config.js"></script>
+    <script src="/js/page-loader.js"></script>
+    <script src="/js/layout-loader.js"></script>
+</body>
+
+</html>

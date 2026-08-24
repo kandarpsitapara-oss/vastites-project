@@ -1,0 +1,25 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+
+# Strapi generated files
+.strapi/
+.strapi-updater.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Backup files
+*.backup

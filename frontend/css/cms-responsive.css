@@ -1,0 +1,381 @@
+/* ============================================================================
+   RESPONSIVE FIXES FOR CMS DEVELOPMENT PAGE
+   Mobile-first approach with proper breakpoints
+   ============================================================================ */
+
+/* Base Mobile Styles (320px+) */
+@media (max-width: 767px) {
+
+    /* Engagement Models - Mobile Accordion (Replaces Table) */
+    #engagement-table-desktop {
+        display: none !important;
+    }
+
+    .mobile-engagement-accordion {
+        display: block !important;
+    }
+
+    .eng-accordion-btn {
+        width: 100%;
+        text-align: left;
+        padding: 15px 20px;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .eng-accordion-btn.active {
+        background: #0f172a;
+        border-color: #eab308;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+    }
+
+    .eng-accordion-btn::after {
+        content: '\f078';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .eng-accordion-btn.active::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .eng-accordion-pane {
+        display: none;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .eng-accordion-pane.active {
+        display: block;
+    }
+
+    .eng-detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #334155;
+        color: #cbd5e1;
+        font-size: 14px;
+    }
+
+    .eng-detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .eng-detail-row span:last-child {
+        color: #fff;
+        font-weight: 600;
+        text-align: right;
+    }
+
+    .section-engagement-models h3 {
+        font-size: 16px !important;
+    }
+
+    /* Business Models Cards - Stack on mobile */
+    .section-business-models .why-choose-grid,
+    .section-business-models>div>div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* CMS Platforms - Mobile Accordion */
+    .cms-tabs-nav {
+        display: none !important;
+    }
+
+    .cms-tab-pane {
+        flex-direction: column !important;
+        padding: 30px 20px !important;
+        margin-bottom: 0 !important;
+        border-radius: 0 0 16px 16px !important;
+        border: 1px solid #e2e8f0 !important;
+        border-top: none !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .cms-tab-pane.active {
+        display: flex !important;
+        margin-bottom: 20px !important;
+    }
+
+    .cms-platform-icon {
+        margin-bottom: 20px !important;
+    }
+
+    /* Ensure vertical stacking of content inside pane is preserved from previous rule */
+    .cms-platform-content {
+        text-align: center;
+    }
+
+    /* Why Choose Cards */
+    .why-choose-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* CTA Banner */
+    .section-cta-banner>div>div {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    .section-cta-banner h2 {
+        font-size: 24px !important;
+    }
+
+    .section-cta-banner p {
+        font-size: 16px !important;
+    }
+
+    /* Hero Section */
+    .mobile-hero-v2 .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .mobile-hero-v2 h1 {
+        font-size: 28px !important;
+    }
+
+    .mobile-hero-v2 .hero-stats {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Section Headers */
+    .section-header h2 {
+        font-size: 28px !important;
+    }
+
+    .section-header p {
+        font-size: 16px !important;
+    }
+
+    /* Vertical Tabs - Mobile Accordion */
+    .services-v-tabs-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .services-v-nav {
+        display: none !important;
+    }
+
+    .mobile-accordion-header {
+        display: block !important;
+    }
+
+    .services-v-content {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    .v-tab-pane {
+        display: none;
+        margin-bottom: 0 !important;
+    }
+
+    .v-tab-pane.active {
+        display: block !important;
+        background: #fff !important;
+        padding: 20px !important;
+        border: 1px solid #e2e8f0 !important;
+        border-top: none !important;
+        border-bottom-left-radius: 8px !important;
+        border-bottom-right-radius: 8px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    }
+}
+
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    /* Business Models - 1 column on tablet */
+    .section-business-models>div>div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Why Choose - 2 columns */
+    .why-choose-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Engagement table - slightly smaller */
+    .section-engagement-models th,
+    .section-engagement-models td {
+        padding: 20px 15px !important;
+        font-size: 14px !important;
+    }
+
+    /* Hero grid - stack on tablet */
+    .mobile-hero-v2 .hero-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Engagement Models - Mobile Accordion on Tablet too */
+    #engagement-table-desktop {
+        display: none !important;
+    }
+
+    .mobile-engagement-accordion {
+        display: block !important;
+    }
+
+    /* Reuse accordion styles (assuming they are globally scoped or I need to copy them?
+       They are inside the media query above. So they are NOT global. I MUST COPY THEM.)
+       Actually, better to move the accordion styles outside the media query but with a specific class scope?
+       No, I'll just copy them for safety to avoid regression.
+    */
+    .eng-accordion-btn {
+        width: 100%;
+        text-align: left;
+        padding: 15px 20px;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .eng-accordion-btn.active {
+        background: #0f172a;
+        border-color: #eab308;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+    }
+
+    .eng-accordion-btn::after {
+        content: '\f078';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .eng-accordion-btn.active::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .eng-accordion-pane {
+        display: none;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .eng-accordion-pane.active {
+        display: block;
+    }
+
+    .eng-detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #334155;
+        color: #cbd5e1;
+        font-size: 14px;
+    }
+
+    .eng-detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .eng-detail-row span:last-child {
+        color: #fff;
+        font-weight: 600;
+        text-align: right;
+    }
+}
+
+/* Desktop Styles (1024px - 1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+
+    /* Container max-width */
+    .container {
+        max-width: 960px !important;
+    }
+
+    /* Business Models - 2 columns */
+    .section-business-models>div>div[style*="grid"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Why Choose - 2 columns */
+    .why-choose-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Large Desktop (1366px - 1919px) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+    .container {
+        max-width: 1200px !important;
+    }
+}
+
+/* Extra Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px !important;
+    }
+}
+
+/* Prevent horizontal scroll */
+* {
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive tables */
+table {
+    width: 100%;
+}
+
+/* Fix for inline styles that might cause overflow */
+[style*="width"] {
+    max-width: 100% !important;
+}
+
+/* Ensure buttons wrap properly */
+.section-cta-banner a,
+.section-engagement-models a {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}

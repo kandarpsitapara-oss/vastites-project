@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vastites containerizes your applications using Docker and Kubernetes — enabling faster deployments, scalability, and infrastructure consistency.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://vastites.com/html/devops-containerization-services.html">
+    <title>DevOps Containerization Services | VAST ITES</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/inner-pages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style id="devops-responsive-fixes">
+        /* Responsive Overrides for DevOps Page */
+
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 48px !important;
+            }
+
+            #devops-hero-grid {
+                gap: 30px !important;
+            }
+
+            .streamline-grid {
+                gap: 30px !important;
+            }
+
+            .results-grid {
+                gap: 20px !important;
+            }
+        }
+
+        @media (max-width: 991px) {
+
+            #devops-hero-grid,
+            .streamline-grid,
+            .results-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .hero-content {
+                margin-bottom: 50px;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-buttons-container {
+                justify-content: center;
+            }
+
+            .hero-stats-container {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0 60px 0 !important;
+            }
+
+            .hero-content h1 {
+                font-size: 36px !important;
+            }
+
+            .section-why-vast h2 {
+                font-size: 32px !important;
+            }
+
+            .section-conclusion {
+                padding: 80px 0 !important;
+            }
+
+            .section-conclusion p {
+                font-size: 16px !important;
+                padding: 0 20px !important;
+            }
+
+            .section-conclusion div[style*="font-size: 100px"] {
+                font-size: 60px !important;
+            }
+
+            .section-provide-accordion {
+                padding: 60px 0 !important;
+            }
+
+            .section-provide-accordion h2 {
+                font-size: 32px !important;
+            }
+
+            .accord-header {
+                padding: 20px !important;
+            }
+
+            .accord-content {
+                padding-left: 30px !important;
+                padding-right: 30px !important;
+            }
+
+            /* Footer Fixes */
+            .footer {
+                text-align: center !important;
+            }
+
+            .footer .grid-4 {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            .footer .grid-4 .footer-col {
+                grid-column: span 1 !important;
+            }
+
+            .footer-links li {
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .footer-contact-info li {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 15px !important;
+            }
+
+            .footer-contact-info li div {
+                text-align: center !important;
+            }
+
+            .footer-bottom {
+                flex-direction: column !important;
+                gap: 20px !important;
+                text-align: center !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0 40px 0 !important;
+            }
+
+            .hero-content h1 {
+                font-size: 32px !important;
+            }
+
+            .hero-buttons-container {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 15px !important;
+            }
+
+            .hero-buttons-container a {
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            .hero-stats-container {
+                flex-direction: column !important;
+                gap: 20px !important;
+                align-items: center !important;
+            }
+
+            .hero-stats-container>div[style*="width: 1px"] {
+                display: none !important;
+            }
+
+            .section-why-vast li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px !important;
+            }
+
+            .accord-header h4 {
+                font-size: 16px !important;
+            }
+
+            .accord-header div[style*="width: 45px"] {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 16px !important;
+            }
+
+            .accord-content p {
+                font-size: 14px !important;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .hero-content h1 {
+                font-size: 28px !important;
+                letter-spacing: -0.5px !important;
+            }
+
+            .hero-content>div:first-child {
+                padding: 6px 12px !important;
+                max-width: 100%;
+                box-sizing: border-box;
+                white-space: normal;
+                line-height: 1.4;
+            }
+
+            .hero-content>div:first-child span {
+                font-size: 12px !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-content h1 {
+                font-size: 24px !important;
+                line-height: 1.2 !important;
+            }
+
+            .hero-content p {
+                font-size: 15px !important;
+            }
+
+            .section-why-vast h2 {
+                font-size: 26px !important;
+            }
+
+            .section-provide-accordion h2 {
+                font-size: 26px !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 15px !important;
+            }
+
+            .hero-content h1 {
+                font-size: 20px !important;
+            }
+
+            .hero-content p {
+                font-size: 14px !important;
+            }
+
+            .hero-content>div:first-child span {
+                font-size: 11px !important;
+            }
+
+            .section-why-vast h2 {
+                font-size: 22px !important;
+            }
+
+            .section-why-vast li {
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .section-conclusion p {
+                font-size: 14px !important;
+                padding: 0 10px !important;
+            }
+
+            .accord-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px !important;
+            }
+
+            .accord-header>div {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+
+            .accord-content {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+                text-align: center !important;
+            }
+
+            /* Tighten result cards */
+            .result-card {
+                padding: 30px 20px !important;
+            }
+
+            .result-card svg {
+                max-width: 100px;
+            }
+
+            .result-card div[style*="font-size: 28px"] {
+                font-size: 22px !important;
+            }
+        }
+
+        /* Essential SVG Overflows Fixes */
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-visual svg {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+
+        .result-card svg {
+            max-width: 140px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (Strict 4-Column Mega Menu) -->
+    <div id="site-header"></div>
+
+    <div id="page-content"></div>
+
+    <div id="site-footer"></div>
+
+    <script src="../js/main.js"></script>
+
+    
+
+    <script src="/js/strapi-config.js"></script>
+    <script src="/js/page-loader.js"></script>
+    <script src="/js/layout-loader.js"></script>
+</body>
+
+</html>

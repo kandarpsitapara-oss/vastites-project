@@ -1,0 +1,73 @@
+Options -Indexes
+RewriteEngine On
+
+# ============================================================
+# GROUP 1: Mobile Dev — root orphans → mobile-development/ canonical
+# (Nav links to subdir versions; root versions are orphaned)
+# ============================================================
+Redirect 301 /html/android-app-development.html /html/mobile-development/android-app-development.html
+Redirect 301 /html/ios-app-development.html /html/mobile-development/ios-app-development.html
+Redirect 301 /html/app-store-optimization.html /html/mobile-development/app-store-optimization-aso.html
+Redirect 301 /html/mobile-app-design.html /html/mobile-development/mobile-app-design.html
+Redirect 301 /html/mobile-security.html /html/mobile-development/mobile-security.html
+Redirect 301 /html/mobile-maintenance-support.html /html/mobile-development/maintenance-and-support.html
+Redirect 301 /html/mobile-performance-optimization.html /html/mobile-development/performance-optimization.html
+
+# ============================================================
+# GROUP 2: Mobile Dev — subdir orphan → root canonical
+# (Nav links to root; subdir version is orphaned)
+# ============================================================
+Redirect 301 /html/mobile-development/cross-platform-app-development.html /html/cross-platform-app-development.html
+
+# ============================================================
+# GROUP 3: Web Dev — root orphans → web-development/ canonical
+# (Root pages have wrong titles; subdir pages are correct)
+# ============================================================
+Redirect 301 /html/custom-web-development.html /html/web-development/custom-web-development.html
+Redirect 301 /html/web-application-development.html /html/web-development/web-application-development.html
+Redirect 301 /html/responsive-web-design.html /html/web-development/responsive-web-design.html
+Redirect 301 /html/web-performance-optimization.html /html/web-development/web-performance-optimization.html
+Redirect 301 /html/web-portal-development.html /html/web-development/web-portal-development.html
+Redirect 301 /html/web-security-compliance.html /html/web-development/web-security-and-compliance.html
+Redirect 301 /html/web-maintenance-support.html /html/web-development/web-maintenance-and-support.html
+
+# ============================================================
+# GROUP 4: Web Dev — subdir orphans → root canonical
+# (Nav links to root; subdir versions are orphaned)
+# ============================================================
+Redirect 301 /html/web-development/cms-development.html /html/cms-development.html
+Redirect 301 /html/web-development/e-commerce-development.html /html/ecommerce-development.html
+
+# ============================================================
+# GROUP 5: Software Dev — subdir orphans → root canonical
+# (Nav links to root; subdir versions are orphaned)
+# ============================================================
+Redirect 301 /html/software-development/custom-software-development.html /html/custom-software-development.html
+Redirect 301 /html/software-development/enterprise-software-solutions.html /html/enterprise-software-solutions.html
+Redirect 301 /html/software-development/software-consulting.html /html/software-consulting.html
+Redirect 301 /html/software-development/software-maintenance-and-support.html /html/software-maintenance-support.html
+Redirect 301 /html/software-development/product-development.html /html/product-development.html
+Redirect 301 /html/software-development/product-re-engineering.html /html/product-reengineering.html
+Redirect 301 /html/software-development/web-app-development.html /html/web-app-development.html
+
+# ============================================================
+# CLEAN URLs: Remove /html/ prefix and .html extension
+# ============================================================
+
+# Redirect /index.html → /
+RewriteCond %{THE_REQUEST} \s/index\.html[?\s] [NC]
+RewriteRule ^ / [R=301,L]
+
+# Redirect /html/path.html → /path  (strips /html/ prefix + .html)
+RewriteCond %{THE_REQUEST} \s/html/([^?\s]+?)\.html[?\s] [NC]
+RewriteRule ^ /%1 [R=301,NE,L]
+
+# Redirect /path.html → /path  (strips .html extension)
+RewriteCond %{THE_REQUEST} \s/([^?\s]+?)\.html[?\s] [NC]
+RewriteRule ^ /%1 [R=301,NE,L]
+
+# Internal rewrite: /path → /html/path.html  (serves file without changing URL)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/html/$1.html -f
+RewriteRule ^(.+)$ /html/$1.html [L]

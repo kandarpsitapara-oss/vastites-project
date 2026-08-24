@@ -1,0 +1,158 @@
+/* Global Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: var(--font-size-body);
+    color: var(--color-text-body);
+    line-height: 1.6;
+    background-color: var(--color-bg-light);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-text-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-light);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-regular);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+/* Skip Navigation Link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 10px 20px;
+    font-weight: 700;
+    z-index: 9999;
+    border-radius: 0 0 4px 0;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Scroll Animations */
+.fade-up-init {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up-init.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accordion States (JS Toggled) */
+.accordion-body {
+    display: none;
+    /* Hidden by default, toggled by JS block/none or max-height */
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter-width);
+    width: 100%;
+}
+
+.section {
+    padding: var(--section-padding) 0;
+}
+
+.bg-gray {
+    background-color: var(--color-bg-gray);
+}
+
+.bg-dark {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+}

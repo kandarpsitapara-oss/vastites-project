@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Integrate security into your DevOps pipeline with Vastites' DevSecOps services — automated security testing, compliance, and vulnerability management.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://vastites.com/html/devsecops-services.html">
+    <title>DevSecOps Services | VAST ITES</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/inner-pages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* =======================================================
+           DEVSECOPS PAGE - RESPONSIVE STYLES
+           Breakpoints: 2560px, 1440px, 1024px, 768px, 425px, 375px, 320px
+        ======================================================= */
+
+        /* =============================================
+           4K  (min-width: 2560px)
+        ============================================= */
+        @media (min-width: 2560px) {
+
+            /* Hero */
+            section[style*="padding: 120px 0 100px"]>div.container>div[style*="grid-template-columns: 1.2fr 1fr"] {
+                gap: 100px;
+            }
+
+            section[style*="padding: 120px 0 100px"] h1[style*="font-size: 56px"] {
+                font-size: 72px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] p[style*="font-size: 20px"] {
+                font-size: 24px !important;
+            }
+
+            /* Best service */
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="grid-template-columns: 1fr 450px"] {
+                grid-template-columns: 1fr 550px !important;
+                gap: 120px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 50px !important;
+            }
+
+            /* Capabilities */
+            #capabilities div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                gap: 60px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 56px !important;
+            }
+        }
+
+        /* =============================================
+           Laptop L  (max-width: 1440px)
+        ============================================= */
+        @media (max-width: 1440px) {
+            #devsecops-hero h1 {
+                font-size: 48px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="grid-template-columns: 1fr 450px"] {
+                grid-template-columns: 1fr 380px !important;
+                gap: 60px !important;
+            }
+        }
+
+        /* =============================================
+           Laptop  (max-width: 1024px)
+        ============================================= */
+        @media (max-width: 1024px) {
+
+            /* HERO */
+            #devsecops-hero {
+                padding: 100px 0 70px !important;
+            }
+
+            #devsecops-hero-grid {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            #devsecops-hero h1 {
+                font-size: 42px !important;
+            }
+
+            #devsecops-hero p {
+                font-size: 17px !important;
+            }
+
+            #devsecops-hero div[style*="display: flex; gap: 16px; margin-bottom: 50px"] {
+                justify-content: center;
+            }
+
+            #devsecops-hero div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                justify-items: center;
+            }
+
+            /* Ensure hero image card is fully visible on stacked screens */
+            #devsecops-hero-card {
+                display: flex !important;
+                margin-top: 30px;
+                padding: 30px !important;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* BEST SERVICE */
+            section[style*="padding: 100px 0; background-color: #ffffff"] {
+                padding: 70px 0 !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="grid-template-columns: 1fr 450px"] {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="position: sticky"] {
+                position: static !important;
+                display: flex !important;
+                gap: 24px !important;
+                flex-wrap: wrap !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="position: sticky"]>div:first-child {
+                flex: 1 1 300px;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="position: sticky"]>div:last-child {
+                flex: 1 1 300px;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 30px !important;
+            }
+
+            /* CAPABILITIES */
+            #capabilities {
+                padding: 70px 0 !important;
+            }
+
+            #capabilities div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 26px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 34px !important;
+            }
+
+            /* WHY CHOOSE */
+            .section-deliverables {
+                padding: 70px 0 !important;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* ACCORDION */
+            section[style*="padding: 100px 0; background-color: #f8fafc"] {
+                padding: 70px 0 !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #f8fafc"] h2[style*="font-size: 42px"] {
+                font-size: 32px !important;
+            }
+        }
+
+        /* =============================================
+           Tablet  (max-width: 768px)
+        ============================================= */
+        @media (max-width: 768px) {
+
+            /* HERO */
+            section[style*="padding: 120px 0 100px"] {
+                padding: 100px 0 60px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] h1[style*="font-size: 56px"] {
+                font-size: 34px !important;
+                line-height: 1.2 !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] p[style*="font-size: 20px"] {
+                font-size: 16px !important;
+                margin-bottom: 28px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] div[style*="display: flex; gap: 16px; margin-bottom: 50px"] {
+                flex-direction: column !important;
+                gap: 12px !important;
+                margin-bottom: 32px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] div[style*="display: flex; gap: 16px; margin-bottom: 50px"] a {
+                justify-content: center !important;
+                text-align: center !important;
+                padding: 16px 24px !important;
+                font-size: 14px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 16px !important;
+            }
+
+            section[style*="padding: 120px 0 100px"] div[style*="font-size: 32px"] {
+                font-size: 24px !important;
+            }
+
+            /* BEST SERVICE */
+            section[style*="padding: 100px 0; background-color: #ffffff"] {
+                padding: 60px 0 !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 26px !important;
+                margin-bottom: 20px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] p[style*="font-size: 17px"] {
+                font-size: 15px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] strong[style*="font-size: 18px"] {
+                font-size: 16px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] p[style*="font-size: 16px"] {
+                font-size: 14px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="position: sticky"]>div:last-child {
+                padding: 28px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] a[href*="tel"][style*="font-size: 28px"] {
+                font-size: 22px !important;
+            }
+
+            /* CAPABILITIES */
+            #capabilities {
+                padding: 60px 0 !important;
+            }
+
+            #capabilities div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 28px !important;
+            }
+
+            .capability-card {
+                padding: 40px 24px !important;
+            }
+
+            #capabilities div[style*="text-align: center; margin-bottom: 70px"] {
+                margin-bottom: 40px !important;
+            }
+
+            /* WHY CHOOSE */
+            .section-deliverables {
+                padding: 60px 0 !important;
+            }
+
+            .section-deliverables h2 {
+                font-size: 24px !important;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .deliverable-card {
+                padding: 28px !important;
+            }
+
+            .deliverable-card h4 {
+                font-size: 17px !important;
+            }
+
+            /* COMMITMENT */
+            section[style*="padding: 80px 0; background: #f8fafc"] {
+                padding: 50px 0 !important;
+            }
+
+            section[style*="padding: 80px 0; background: #f8fafc"] p {
+                font-size: 16px !important;
+                padding: 0 20px !important;
+            }
+
+            /* ACCORDION */
+            section[style*="padding: 100px 0; background-color: #f8fafc"] {
+                padding: 60px 0 !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #f8fafc"] h2 {
+                font-size: 26px !important;
+            }
+
+            .accordion-trigger {
+                padding: 20px 20px !important;
+                font-size: 16px !important;
+            }
+
+            .accordion-body {
+                padding: 0 20px 20px 70px !important;
+                font-size: 15px !important;
+            }
+
+            /* FOOTER */
+            .grid-4 {
+                grid-template-columns: 1fr !important;
+            }
+
+            .footer-col[style*="grid-column: span 2"] {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* =============================================
+           Mobile L  (max-width: 425px)
+        ============================================= */
+        @media (max-width: 425px) {
+
+            /* HERO */
+            #devsecops-hero {
+                padding: 90px 0 50px !important;
+            }
+
+            #devsecops-hero h1 {
+                font-size: 28px !important;
+            }
+
+            #devsecops-hero p {
+                font-size: 15px !important;
+            }
+
+            #devsecops-hero div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
+                padding-top: 20px !important;
+            }
+
+            #devsecops-hero div[style*="font-size: 32px"] {
+                font-size: 20px !important;
+            }
+
+            #devsecops-hero div[style*="font-size: 14px; color: #94a3b8"] {
+                font-size: 12px !important;
+            }
+
+            /* BEST SERVICE */
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 22px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] div[style*="position: sticky"]>div:last-child {
+                padding: 24px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] a[href*="tel"][style*="font-size: 28px"] {
+                font-size: 20px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h3[style*="font-size: 22px"] {
+                font-size: 18px !important;
+            }
+
+            /* CAPABILITIES */
+            .capability-card {
+                padding: 32px 16px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 24px !important;
+            }
+
+            /* WHY CHOOSE */
+            .section-deliverables h2 {
+                font-size: 22px !important;
+            }
+
+            .deliverable-card {
+                padding: 24px !important;
+            }
+
+            /* ACCORDION */
+            section[style*="padding: 100px 0; background-color: #f8fafc"] h2 {
+                font-size: 22px !important;
+            }
+
+            .accordion-trigger {
+                padding: 18px 16px !important;
+                font-size: 15px !important;
+            }
+
+            .accordion-body {
+                padding: 0 16px 18px 60px !important;
+            }
+
+            .icon-box {
+                width: 34px !important;
+                height: 34px !important;
+            }
+
+            /* COMMITMENT */
+            section[style*="padding: 80px 0; background: #f8fafc"] p {
+                font-size: 15px !important;
+                padding: 0 10px !important;
+            }
+        }
+
+        /* =============================================
+           Mobile M  (max-width: 375px)
+        ============================================= */
+        @media (max-width: 375px) {
+            #devsecops-hero h1 {
+                font-size: 26px !important;
+            }
+
+            #devsecops-hero div[style*="font-size: 32px"] {
+                font-size: 18px !important;
+            }
+
+            #devsecops-hero div[style*="display: flex; gap: 16px; margin-bottom: 50px"] a {
+                font-size: 13px !important;
+                padding: 14px 18px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 20px !important;
+            }
+
+            .section-deliverables h2 {
+                font-size: 20px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 22px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #f8fafc"] h2 {
+                font-size: 20px !important;
+            }
+        }
+
+        /* =============================================
+           Mobile S  (max-width: 320px)
+        ============================================= */
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 12px !important;
+            }
+
+            #devsecops-hero {
+                padding: 80px 0 40px !important;
+            }
+
+            #devsecops-hero h1 {
+                font-size: 22px !important;
+            }
+
+            #devsecops-hero p {
+                font-size: 13px !important;
+            }
+
+            #devsecops-hero div[style*="font-size: 32px"] {
+                font-size: 16px !important;
+            }
+
+            #devsecops-hero div[style*="display: flex; gap: 16px; margin-bottom: 50px"] a {
+                font-size: 12px !important;
+                padding: 12px 14px !important;
+            }
+
+            /* Collapse stats to 1-col on 320px */
+            #devsecops-hero div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #ffffff"] h2[style*="font-size: 38px"] {
+                font-size: 18px !important;
+            }
+
+            .section-deliverables h2 {
+                font-size: 18px !important;
+            }
+
+            #capabilities h2[style*="font-size: 42px"] {
+                font-size: 20px !important;
+            }
+
+            .capability-card {
+                padding: 24px 12px !important;
+            }
+
+            section[style*="padding: 100px 0; background-color: #f8fafc"] h2 {
+                font-size: 18px !important;
+            }
+
+            .accordion-trigger {
+                padding: 14px 12px !important;
+                font-size: 13px !important;
+            }
+
+            .accordion-body {
+                padding: 0 12px 14px 52px !important;
+                font-size: 13px !important;
+            }
+
+            .icon-box {
+                width: 28px !important;
+                height: 28px !important;
+                font-size: 12px !important;
+            }
+
+            .deliverable-card {
+                padding: 18px !important;
+            }
+
+            .deliverable-card h4 {
+                font-size: 15px !important;
+            }
+
+            section[style*="padding: 80px 0; background: #f8fafc"] p {
+                font-size: 13px !important;
+                padding: 0 4px !important;
+            }
+
+            /* Commitment quote icons */
+            .fa-quote-left,
+            .fa-quote-right {
+                display: none !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER (Strict 4-Column Mega Menu) -->
+    <div id="site-header"></div>
+
+    <div id="page-content"></div>
+
+    <div id="site-footer"></div>
+
+    <script src="../js/main.js"></script>
+
+    
+
+    <script src="/js/strapi-config.js"></script>
+    <script src="/js/page-loader.js"></script>
+    <script src="/js/layout-loader.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+@media (min-width: 2560px) {
+    :root {
+        --header-height: 100px;
+    }
+
+    .nav-link {
+        font-size: 18px !important;
+        padding: 40px 25px !important;
+    }
+
+    .header-logo-img {
+        height: 65px !important;
+    }
+
+    .nav-list {
+        gap: 30px !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .nav-link {
+        font-size: 16px;
+        padding: 30px 20px;
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    padding: 0;
+    background-color: rgba(212, 213, 224, 0.95);
+    /* Consistent premium grayish blue */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all var(--transition-normal);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.header.transparent {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.header.scrolled {
+    background-color: rgba(212, 213, 224, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    max-width: 200px;
+    /* Prevent logo from pushing nav too far */
+}
+
+.header-logo-img {
+    height: 45px !important;
+    width: auto !important;
+    display: block;
+    object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .header-logo-img {
+        height: 35px;
+    }
+}
+
+/* Nav List & Links */
+.nav-list {
+    display: flex;
+    gap: 15px;
+    /* Balanced gap for readability */
+    height: 100%;
+    align-items: center;
+}
+
+.nav-item {
+    height: 100%;
+
+    align-items: center;
+}
+
+.nav-link {
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    padding: 30px 15px;
+    /* Large vertical padding to connect to mega menu */
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link .arrow {
+    font-size: 10px;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.header-cta {
+    margin-left: 20px;
+    flex: 0 0 auto !important;
+}
+
+.nav-item:hover .nav-link {
+    color: #6633d7;
+}
+
+.nav-item:hover .nav-link .arrow {
+    transform: rotate(180deg);
+}
+
+/* Mega Menu Container - Video Reference Match */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff !important;
+    /* or var(--color-bg-light) if defined, effectively flat */
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    /* Subtle separator */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    /* Seamless shadow, no hard box look */
+    border-radius: 0;
+    /* REMOVED border-radius as per rule */
+    padding: 0;
+    /* Internal padding handled by container */
+
+    /* Animation Match */
+    opacity: 0;
+    transform: translateY(-12px);
+    /* Video spec */
+    visibility: hidden;
+    transition:
+        opacity 0.25s ease-out,
+        transform 0.25s ease-out,
+        visibility 0.25s;
+    z-index: 999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+/* Mega Menu Scrollbar */
+.mega-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mega-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.mega-menu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.mega-menu::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+/* Hover Behavior */
+/* Hover Behavior - Enforce for Desktop */
+@media (min-width: 993px) {
+    .nav-item.has-mega-menu {
+        position: static;
+        /* Allows mega-menu to position relative to header */
+    }
+
+    .nav-item.has-mega-menu:hover .mega-menu,
+    .nav-item.has-mega-menu:focus-within .mega-menu {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        transition-delay: 0s;
+        pointer-events: auto !important;
+        display: block !important;
+
+        /* Ensure it sits on top and spans full width */
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        background-color: #fff !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* Mega Menu Internal Layout */
+.mega-menu .container {
+    max-width: 1320px;
+    padding: 64px 80px;
+    /* Video spec: 64px T/B, 80px L/R */
+}
+
+.header .container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.logo {
+    flex: 0 0 auto !important;
+    display: flex;
+    align-items: center;
+}
+
+.mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* Video spec */
+    column-gap: 56px;
+    /* Video spec */
+    row-gap: 0;
+    width: 100%;
+}
+
+/* Columns - STRICT NO BOX */
+.mega-menu-col {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Column Headings */
+.mega-menu-col h4 {
+    color: #0f172a;
+    /* Darker slate for contrast */
+    font-size: 14px;
+    /* Video spec */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    /* Video spec */
+    opacity: 0.7;
+    /* Video spec */
+    margin-bottom: 24px;
+    padding-bottom: 0;
+    border: none;
+    /* No underlines */
+    display: block;
+}
+
+/* Column Links */
+.mega-menu-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu-col ul li {
+    margin-bottom: 12px;
+}
+
+.mega-menu-col ul li a {
+    color: #64748b;
+    /* Slate-500 */
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    /* Larger hit area */
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.mega-menu-col ul li a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+    background: transparent;
+    /* Mandatory: No background */
+}
+
+
+
+.mega-menu-col a:hover {
+    color: var(--color-primary);
+    transform: translateX(6px);
+    color: var(--color-accent);
+}
+
+/* Last Column Feature Styling (e.g. Case Studies) */
+.mega-menu-col .feature-box {
+    background: #f8fafc;
+    padding: 24px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.mega-menu-col .feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Technologies Mega Menu Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 cols for density */
+    gap: 20px;
+    /* Increased gap for breathing room */
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    /* Larger hit area */
+    background: #f8fafc;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.tech-item:hover {
+    background: #fff;
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Stronger lift */
+    transform: translateY(-3px);
+    color: var(--color-primary);
+}
+
+.tech-icon {
+    font-size: 20px;
+    /* Slightly larger icons */
+    line-height: 1;
+}
+
+/* Header CTA */
+.header-cta .btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    /* More corporate, less rounded */
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+    /* Never let it compress */
+    margin-left: auto;
+    /* Push to right in flex row */
+    position: relative;
+    z-index: 1001;
+    /* Always above nav and page content */
+    padding: 2px;
+    /* Slightly larger tap target */
+}
+
+.mobile-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #2B3949;
+    /* Dark default: visible on light/white headers */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Keep white bars on transparent (dark) header — homepage */
+.header.transparent .mobile-toggle span,
+.header.scrolled .mobile-toggle span {
+    background-color: #ffffff;
+}
+
+/* -------------------------------------------------------------------------- */
+/*             Mega Menu - Generic Grid Layout (Moved from sections.css)      */
+/* -------------------------------------------------------------------------- */
+.mega-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.mega-category h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mega-category h4 i {
+    color: #ef4444;
+    /* icon red color from image */
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.mega-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-category ul li {
+    margin-bottom: 12px;
+}
+
+.mega-category ul li a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.mega-category ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.mega-category ul li a::before {
+    content: "•";
+    color: #f59e0b;
+    /* Yellow bullet point */
+    margin-right: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.mega-category ul li a:hover {
+    color: #f59e0b;
+    /* Hover Yellow */
+    padding-left: 4px;
+}
+
+/* Contact Box Custom */
+.mega-contact-box {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.mega-contact-box h4 {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mega-contact-box h4 i {
+    color: #ef4444;
+}
+
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.contact-row:last-child {
+    margin-bottom: 0;
+}
+
+.contact-row i {
+    font-size: 20px;
+    margin-top: 4px;
+}
+
+.contact-row div {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-row span {
+    font-size: 11px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.contact-row a {
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.contact-row.address-row a {
+    font-weight: 400;
+}
+
+.contact-row a:hover {
+    color: #f59e0b;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .mega-grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .mega-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block admin and CMS paths
+Disallow: /vastites-cms/
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /tmp/
+
+Sitemap: https://vastites.com/sitemap.xml

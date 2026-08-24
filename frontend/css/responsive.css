@@ -1,0 +1,3198 @@
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE CSS
+   Covers: Header, Footer, All Inner Pages, Home Page
+   Breakpoints: 1200px (large tablet/small desktop), 992px (tablet), 768px (mobile), 480px (small mobile)
+   ========================================================================== */
+
+/* Reduce header height on mobile */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+    }
+}
+
+/* ==========================================================================
+   1. LARGE TABLET / SMALL DESKTOP (max-width: 1200px)
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    /* Header */
+    .nav-link {
+        font-size: 14px;
+        padding: 30px 10px;
+    }
+
+    .nav-list {
+        gap: 4px;
+    }
+
+    /* Mega Menu */
+    .mega-menu .container {
+        padding: 48px 40px;
+    }
+
+    .mega-grid-layout {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Grid Layouts */
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Inner Hero */
+    .inner-hero h1 {
+        font-size: 46px;
+    }
+
+    /* Overview Grid */
+    .overview-grid {
+        gap: 50px;
+    }
+
+    .overview-text h2 {
+        font-size: 36px;
+    }
+
+    /* Tech Tabs */
+    .tech-tabs,
+    .service-tabs {
+        justify-content: flex-start;
+        padding-bottom: 5px;
+    }
+
+    /* Services V Tabs */
+    .services-v-tabs-grid {
+        gap: 30px;
+    }
+
+    /* CTA Wrapper */
+    .cta-wrapper {
+        padding: 50px;
+        gap: 40px;
+    }
+
+    /* Hire Devs Section */
+    .hire-header-flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Stats Strip */
+    .stats-flex {
+        gap: 20px;
+    }
+
+    .stat-item h3 {
+        font-size: 48px;
+    }
+}
+
+/* ==========================================================================
+   2. TABLET (max-width: 992px)
+   ========================================================================== */
+@media (max-width: 992px) {
+
+    /* --- GRID SYSTEM --- */
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- HEADER --- */
+    .header-cta {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 32px;
+        height: 22px;
+        flex-shrink: 0;
+        margin-left: auto;
+        z-index: 1001;
+    }
+
+    /* Ensure header container is flex with logo left and hamburger right */
+    .header>.container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding-right: 16px;
+    }
+
+    .nav {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background-color: var(--color-bg-dark);
+        padding: 0;
+        /* Removed padding for sticky headers */
+        transition: all 0.3s ease;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .nav.active {
+        left: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        height: auto;
+        padding: 0 20px;
+        /* Re-applied padding here */
+    }
+
+    .nav-item {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* position: sticky; */
+        /* Removed to fix dropdown overlap */
+        top: 0;
+        background-color: var(--color-bg-dark);
+        z-index: 10;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding: 15px 0;
+        width: 100%;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-item:hover .nav-link {
+        color: #fff;
+    }
+
+    /* Mobile Mega Menu */
+    .mega-menu {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding: 0;
+        border-top: none;
+        background-color: transparent !important;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: block;
+    }
+
+    .nav-item.has-mega-menu.active .mega-menu {
+        max-height: 5000px;
+        padding-bottom: 20px;
+    }
+
+    .nav-item.has-mega-menu .arrow {
+        transform: rotate(0);
+        transition: transform 0.3s;
+    }
+
+    .nav-item.has-mega-menu.active .arrow {
+        transform: rotate(180deg);
+    }
+
+    .mega-menu .container {
+        padding: 10px 0;
+    }
+
+    .mega-grid-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding-left: 15px;
+    }
+
+    /* Ensure the Get in Touch contact box is always fully visible in mobile */
+    .mega-contact-box {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        grid-column: span 2;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.1);
+        margin-top: 10px;
+    }
+
+    .mega-menu-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding-left: 15px;
+    }
+
+    .mega-menu-col h4 {
+        color: var(--color-accent);
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-bottom: none;
+    }
+
+    .mega-menu-col a {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 5px 0;
+    }
+
+    .mega-menu-col a:hover {
+        color: #fff;
+        transform: translateX(5px);
+    }
+
+    .mega-category h4 {
+        color: var(--color-accent) !important;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .mega-menu h4[style*="text-transform: uppercase"] {
+        color: rgba(255, 255, 255, 0.4) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 25px !important;
+        font-size: 11px !important;
+        letter-spacing: 1px;
+    }
+
+    .mega-category {
+        margin-bottom: 35px;
+    }
+
+    .mega-category ul li a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        /* Slightly larger for easier tapping */
+        padding: 5px 0;
+    }
+
+    .mega-contact-box {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .mega-contact-box h4 {
+        color: #fff !important;
+    }
+
+    .contact-row a {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .contact-row span {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .mega-image {
+        display: none;
+    }
+
+    /* --- HERO SECTION (TABLET) --- */
+    .hero-section h1 {
+        font-size: 40px;
+    }
+
+    /* --- INNER HERO --- */
+    .inner-hero {
+        padding: 110px 0 70px;
+    }
+
+    .inner-hero h1 {
+        font-size: 40px;
+    }
+
+    .inner-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-content-right img {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* --- OVERVIEW SECTION --- */
+    .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .overview-text h2 {
+        font-size: 32px;
+    }
+
+    /* --- MISSION GRID --- */
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* --- VALUES GRID --- */
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* --- TEAM GRID --- */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* --- PHILOSOPHY GRID --- */
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* --- INDUSTRY LIST --- */
+    .industry-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- RE-SERVICES GRID --- */
+    .re-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- TABS WRAPPER --- */
+    .tabs-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tabs-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .v-tab-btn {
+        border: 1px solid #f1f5f9;
+        border-radius: 8px;
+    }
+
+    /* --- CTA WRAPPER --- */
+    .cta-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+        padding: 40px 30px;
+    }
+
+    .cta-content {
+        margin: 0 auto;
+    }
+
+    .cta-image {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* --- FLOATING CTA BANNER --- */
+    .floating-cta-banner {
+        padding: 40px 30px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-content {
+        padding-right: 0;
+        margin-bottom: 25px;
+    }
+
+    .cta-action {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* --- STREAMLINE CTA --- */
+    .streamline-cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .streamline-text {
+        max-width: 100%;
+    }
+
+    .streamline-image {
+        justify-content: center;
+    }
+
+    .streamline-wrapper {
+        padding: 40px 30px;
+    }
+
+    /* --- HERO STATS GRID --- */
+    .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- MOBILE HERO V2 --- */
+    .mobile-hero-v2-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .mobile-hero-v2-left h1 {
+        font-size: 42px;
+    }
+
+    .mobile-hero-v2-media {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* --- SERVICES V TABS --- */
+    .services-v-tabs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-v-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .v-tab-btn {
+        flex: 0 0 auto;
+        width: auto;
+        padding: 10px 18px;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+    }
+
+    /* --- HIRE DEVS SECTION --- */
+    .hire-header-flex {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .hire-devs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- STATS STRIP --- */
+    .stats-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .stat-item h3 {
+        font-size: 48px;
+    }
+
+    /* --- PROCESS GRID --- */
+    .process-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .process-step-item {
+        flex: 0 0 calc(33.33% - 20px);
+        margin-bottom: 40px;
+    }
+
+    .step-dot {
+        display: none;
+    }
+
+    /* --- METHODOLOGY GALLERY --- */
+    .methodology-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item {
+        height: 350px;
+    }
+
+    /* --- SECTION PADDING REDUCTION --- */
+    .section-overview,
+    .section-re-services,
+    .section-process,
+    .section-timeline,
+    .section-mission,
+    .section-stats-strip,
+    .section-expertise,
+    .section-values,
+    .section-team-preview,
+    .section-philosophy,
+    .section-clients,
+    .section-industries-list,
+    .section-faq,
+    .section-consultation,
+    .section-why-choose,
+    .section-journey,
+    .section-methodologies,
+    .section-unique-process,
+    .section-tech-stack,
+    .section-hire-devs,
+    .section-services-v-tabs,
+    .section-brand-story {
+        padding: 70px 0;
+    }
+
+    /* --- FOOTER --- */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    /* --- BLOG --- */
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- PORTFOLIO --- */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- CONTACT --- */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* ==========================================================================
+   3. MOBILE (max-width: 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* --- CONTAINER --- */
+    .container {
+        padding: 0 16px;
+    }
+
+    /* --- GRID SYSTEM --- */
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- SECTION PADDING --- */
+    .section {
+        padding: 50px 0;
+    }
+
+    /* --- HEADER --- */
+    .header-logo-img {
+        height: 35px;
+    }
+
+    /* Mega Menu Mobile */
+    .mega-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-left: 10px;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+
+    .hero-section h1 {
+        font-size: 32px;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    /* Video Hero */
+    .video-hero .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .video-hero .hero-content p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* --- INNER HERO --- */
+    .inner-hero {
+        padding: 100px 0 60px;
+    }
+
+    .inner-hero h1 {
+        font-size: 32px;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-content-left p {
+        font-size: 16px;
+    }
+
+    .hero-btns {
+        margin-top: 25px;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    /* --- MOBILE HERO V2 --- */
+    .mobile-hero-v2 {
+        padding: 90px 0 60px;
+    }
+
+    .mobile-hero-v2-left h1 {
+        font-size: 34px;
+    }
+
+    .mobile-hero-v2-lead {
+        font-size: 16px;
+    }
+
+    .mobile-hero-v2-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .mobile-hero-v2-stat {
+        padding: 16px;
+    }
+
+    .mobile-hero-v2-stat .value {
+        font-size: 22px;
+    }
+
+    /* --- OVERVIEW --- */
+    .overview-text h2 {
+        font-size: 28px;
+    }
+
+    .overview-text p {
+        font-size: 16px;
+    }
+
+    .overview-content-full h2 {
+        font-size: 28px;
+    }
+
+    .overview-content-full p {
+        font-size: 16px;
+    }
+
+    /* --- SECTION HEADERS --- */
+    .section-header-left h2 {
+        font-size: 28px;
+    }
+
+    .section-header-left p {
+        font-size: 16px;
+    }
+
+    /* --- RE-SERVICES GRID --- */
+    .re-services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .re-card-modern {
+        padding: 28px;
+    }
+
+    .re-card-modern h4 {
+        font-size: 18px;
+    }
+
+    /* --- PROCESS GRID (ZIGZAG) --- */
+    .process-grid-exact {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+
+    .process-step-exact {
+        grid-column: auto !important;
+        grid-row: auto !important;
+        margin-top: 0 !important;
+    }
+
+    /* --- PROCESS STEPS --- */
+    .process-step-item {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    /* --- TIMELINE --- */
+    .timeline-container {
+        padding-left: 60px;
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-node {
+        left: -50px;
+        width: 50px;
+    }
+
+    .timeline-number {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .timeline-card {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* --- MISSION GRID --- */
+    .mission-card {
+        padding: 30px;
+    }
+
+    /* --- STATS STRIP --- */
+    .stats-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .stat-item h3 {
+        font-size: 48px;
+    }
+
+    /* --- VALUES GRID --- */
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- TEAM GRID --- */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* --- INDUSTRY LIST --- */
+    .industry-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* --- ACCORDION --- */
+    .accordion-header {
+        padding: 18px 20px;
+        font-size: 16px;
+    }
+
+    .accordion-body {
+        padding: 0 20px 20px;
+    }
+
+    /* --- TABS --- */
+    .tabs-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- HERO STATS GRID --- */
+    .hero-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- METHODOLOGY GALLERY --- */
+    .methodology-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+        height: 280px;
+    }
+
+    .cinematic-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    }
+
+    .cinematic-overlay h3 {
+        transform: translateY(0);
+        font-size: 18px;
+    }
+
+    /* --- CTA WRAPPER --- */
+    .cta-wrapper {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .cta-content h2 {
+        font-size: 26px;
+    }
+
+    .cta-content p {
+        font-size: 16px;
+    }
+
+    /* --- FLOATING CTA BANNER --- */
+    .floating-cta-banner {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .cta-content h2 {
+        font-size: 22px;
+    }
+
+    .cta-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+
+    /* --- STREAMLINE WRAPPER --- */
+    .streamline-wrapper {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .streamline-text h2 {
+        font-size: 26px;
+    }
+
+    /* --- SERVICES V TABS --- */
+    .services-v-nav {
+        flex-direction: column;
+    }
+
+    .v-tab-btn {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    /* --- HIRE DEVS GRID --- */
+    .hire-devs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- WHY CHOOSE GRID --- */
+    .why-choose-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-card.full-width {
+        grid-column: 1;
+    }
+
+    /* --- JOURNEY STATS --- */
+    .journey-stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* --- SECTION PADDING REDUCTION --- */
+    .section-overview,
+    .section-re-services,
+    .section-process,
+    .section-timeline,
+    .section-mission,
+    .section-stats-strip,
+    .section-expertise,
+    .section-values,
+    .section-team-preview,
+    .section-philosophy,
+    .section-clients,
+    .section-industries-list,
+    .section-faq,
+    .section-consultation,
+    .section-why-choose,
+    .section-journey,
+    .section-methodologies,
+    .section-unique-process,
+    .section-tech-stack,
+    .section-hire-devs,
+    .section-services-v-tabs,
+    .section-brand-story,
+    .section-vertical-tabs,
+    .section-streamline-cta,
+    .section-cta {
+        padding: 60px 0;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        padding: 60px 0 25px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .footer-logo-img {
+        height: 45px;
+    }
+
+    /* --- BLOG --- */
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- PORTFOLIO --- */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- CONTACT --- */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- DELIVERABLES GRID --- */
+    .deliverables-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .deliverable-card {
+        padding: 30px !important;
+    }
+
+    /* --- PWA WHY GRID --- */
+    .pwa-why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pwa-why-card {
+        padding: 25px;
+    }
+
+    /* --- TECH SECTION --- */
+    .mobile-tech-slider-container {
+        padding: 0;
+        margin: 30px auto;
+    }
+
+    .mobile-tech-slider-viewport {
+        padding: 40px 10px 60px !important;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent) !important;
+        mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent) !important;
+    }
+
+    .tech-arrow {
+        display: none;
+    }
+
+    .mobile-tech-slider-track {
+        gap: 20px !important;
+    }
+
+    .mobile-tech-item-card {
+        flex: 0 0 130px !important;
+        gap: 12px;
+    }
+
+    .mobile-tech-icon-circle {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .mobile-tech-icon-circle img,
+    .mobile-tech-icon-circle i {
+        max-width: 45px;
+        max-height: 45px;
+        font-size: 40px;
+    }
+
+    .mobile-tech-name {
+        font-size: 14px;
+    }
+
+    /* --- SECTION TITLES --- */
+    .section-title {
+        font-size: 28px;
+    }
+
+    /* --- SERVICES SECTION --- */
+    .services-section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    /* --- HOME THEME WHY CHOOSE --- */
+    .home-theme .why-choose-section {
+        margin: 30px 0;
+        border-radius: 16px;
+        padding: 50px 0;
+    }
+
+    .home-theme .why-choose-section .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .home-theme .why-choose-section h2 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .home-theme .why-choose-section p {
+        text-align: center;
+    }
+
+    .home-theme .why-choose-section ul li {
+        justify-content: center;
+    }
+
+    /* --- CONSULT FORM --- */
+    .consult-form-container {
+        padding: 30px 20px;
+    }
+
+    /* --- SECTION BRAND STORY --- */
+    .brand-story-content h2 {
+        font-size: 28px !important;
+    }
+
+    .brand-story-content p {
+        font-size: 16px !important;
+    }
+
+    /* --- SERVICES V TABS HEADER --- */
+    .services-v-header h2 {
+        font-size: 28px;
+    }
+
+    .services-v-header p {
+        font-size: 16px;
+    }
+
+    /* --- SECTION PROCESS --- */
+    .section-process {
+        padding: 70px 0;
+    }
+
+    .process-header h2 {
+        font-size: 28px;
+    }
+
+    /* --- SECTION VERTICAL TABS --- */
+    .section-vertical-tabs {
+        padding-bottom: 80px;
+    }
+
+    /* --- ABOUT PAGE --- */
+    .about-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- TECH FILTER TABS --- */
+    .tech-filter-tabs {
+        gap: 8px;
+    }
+
+    .tech-filter-tabs li {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    /* --- INNER PAGE SECTION HEADINGS --- */
+    h2 {
+        font-size: 26px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+
+/* ==========================================================================
+   4. SMALL MOBILE (max-width: 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+
+    /* --- CONTAINER --- */
+    .container {
+        padding: 0 14px;
+    }
+
+    /* --- INNER HERO --- */
+    .inner-hero h1 {
+        font-size: 26px;
+    }
+
+    .inner-hero {
+        padding: 90px 0 50px;
+    }
+
+    /* --- MOBILE HERO V2 --- */
+    .mobile-hero-v2-left h1 {
+        font-size: 28px;
+    }
+
+    .mobile-hero-v2-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-hero-v2-cta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* --- VIDEO HERO --- */
+    .video-hero .hero-content h1 {
+        font-size: 28px;
+    }
+
+    /* --- PROCESS STEPS --- */
+    .process-step-item {
+        flex: 0 0 100%;
+    }
+
+    /* --- TEAM GRID --- */
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- INDUSTRY LIST --- */
+    .industry-list-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- TECH MOBILE --- */
+    .mobile-tech-item-card {
+        flex: 0 0 110px !important;
+    }
+
+    .mobile-tech-icon-circle {
+        width: 90px !important;
+        height: 90px !important;
+    }
+
+    /* --- STATS --- */
+    .stat-item h3 {
+        font-size: 40px;
+    }
+
+    /* --- SECTION TITLES --- */
+    .section-title {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    /* --- BUTTONS --- */
+    .btn,
+    .btn-primary,
+    .btn-yellow,
+    .cta-btn {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+
+    /* --- HERO BUTTONS --- */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        padding: 50px 0 20px;
+    }
+
+    /* --- ACCORDION --- */
+    .accordion-header {
+        font-size: 15px;
+        padding: 15px 16px;
+    }
+
+    /* --- FLOATING CTA BANNER --- */
+    .floating-cta-banner {
+        padding: 25px 16px;
+    }
+
+    /* --- CTA WRAPPER --- */
+    .cta-wrapper {
+        padding: 25px 16px;
+        border-radius: 16px;
+    }
+
+    /* --- STREAMLINE WRAPPER --- */
+    .streamline-wrapper {
+        padding: 25px 16px;
+        border-radius: 16px;
+    }
+
+    /* --- CONSULT FORM --- */
+    .consult-form-container {
+        padding: 25px 16px;
+    }
+
+    /* --- SECTION PADDING --- */
+    .section-overview,
+    .section-re-services,
+    .section-process,
+    .section-timeline,
+    .section-mission,
+    .section-stats-strip,
+    .section-expertise,
+    .section-values,
+    .section-team-preview,
+    .section-philosophy,
+    .section-clients,
+    .section-industries-list,
+    .section-faq,
+    .section-consultation,
+    .section-why-choose,
+    .section-journey,
+    .section-methodologies,
+    .section-unique-process,
+    .section-tech-stack,
+    .section-hire-devs,
+    .section-services-v-tabs,
+    .section-brand-story,
+    .section-vertical-tabs,
+    .section-streamline-cta,
+    .section-cta {
+        padding: 50px 0;
+    }
+
+    /* --- MEGA MENU MOBILE --- */
+    .mega-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- SERVICES V TABS --- */
+    .v-tab-pane h3 {
+        font-size: 20px;
+    }
+
+    /* --- HIRE DEVS --- */
+    .hire-devs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- BLOG --- */
+    .blog-card-img {
+        height: 200px;
+    }
+}
+
+/* ==========================================================================
+   5. EXTRA SMALL (max-width: 360px)
+   ========================================================================== */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .inner-hero h1 {
+        font-size: 24px;
+    }
+
+    .mobile-hero-v2-left h1 {
+        font-size: 24px;
+    }
+
+    .video-hero .hero-content h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================================================
+   6. UTILITY OVERRIDES FOR ALL BREAKPOINTS
+   ========================================================================== */
+
+/* Ensure images are always responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal overflow */
+body {
+    overflow-x: hidden;
+}
+
+/* Make tables scroll on mobile */
+table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Ensure form elements are full width on mobile */
+@media (max-width: 768px) {
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-control {
+        font-size: 16px;
+        /* Prevent iOS zoom on focus */
+    }
+}
+
+/* ==========================================================================
+   7. FOOTER GRID RESPONSIVE (Shared across all pages)
+   ========================================================================== */
+.footer .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+@media (max-width: 992px) {
+    .footer .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* ==========================================================================
+   8. SERVICES SECTION RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-tabs-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .service-tabs {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .service-tabs li {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .tech-tabs-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tech-tabs {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .tech-tabs li {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+}
+
+/* ==========================================================================
+   9. HOME PAGE SPECIFIC RESPONSIVE
+   ========================================================================== */
+@media (max-width: 992px) {
+    .home-theme .why-choose-section .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .home-theme .why-choose-section h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .home-theme .why-choose-section p {
+        text-align: center;
+    }
+
+    .home-theme .why-choose-section .why-us-content {
+        text-align: center;
+    }
+
+    .home-theme .why-choose-section ul li {
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   10. ABOUT PAGE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-mission {
+        padding: 60px 0;
+    }
+
+    .mission-card {
+        padding: 30px 25px;
+    }
+
+    .mission-card h3 {
+        font-size: 20px;
+    }
+
+    .section-values {
+        padding: 60px 0;
+    }
+
+    .value-card {
+        padding: 30px 20px;
+    }
+
+    .section-team-preview {
+        padding: 60px 0;
+    }
+}
+
+/* ==========================================================================
+   11. CONTACT PAGE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-form-wrapper {
+        padding: 30px 20px;
+    }
+}
+
+/* ==========================================================================
+   12. BLOG PAGE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .blog-hero h1 {
+        font-size: 28px;
+    }
+
+    .blog-post-content {
+        padding: 0;
+    }
+
+    .blog-sidebar {
+        margin-top: 40px;
+    }
+}
+
+/* ==========================================================================
+   13. PORTFOLIO PAGE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .portfolio-filter {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .portfolio-filter-btn {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}
+
+/* ==========================================================================
+   14. TECH STACK INNER PAGE RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .tech-stack-header h2 {
+        font-size: 26px;
+    }
+
+    .tech-stack-header p {
+        font-size: 16px;
+    }
+
+    .tech-filter-tabs {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tech-filter-tabs li {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
+
+/* ==========================================================================
+   15. SERVICES VERTICAL TABS (web-development.html style)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-services-v-tabs {
+        padding: 60px 0;
+    }
+
+    .services-v-header h2 {
+        font-size: 26px;
+    }
+
+    .services-v-nav {
+        flex-direction: column;
+    }
+
+    .v-tab-btn {
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .svc-pane-icon {
+        font-size: 36px;
+    }
+
+    .v-tab-pane h3 {
+        font-size: 22px;
+    }
+}
+
+/* ==========================================================================
+   16. HIRE DEVELOPERS SECTION RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-hire-devs {
+        padding: 60px 0;
+    }
+
+    .hire-header-flex {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .hire-header-left h2 {
+        font-size: 26px;
+    }
+
+    .hire-devs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   17. INNER HERO GRID RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .inner-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero-content-right {
+        display: block;
+        margin-top: 30px;
+    }
+
+    .hero-content-right img {
+        max-width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ==========================================================================
+   18. STATS SECTION RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-stats-strip {
+        padding: 60px 0;
+    }
+
+    .stats-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .stat-item {
+        text-align: center;
+        border-left: none;
+        border-top: 3px solid var(--color-accent);
+        padding-left: 0;
+        padding-top: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stat-item h3 {
+        font-size: 48px;
+    }
+}
+
+/* ==========================================================================
+   19. SECTION PROCESS RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-process {
+        padding: 60px 0;
+    }
+
+    .process-zigzag-container {
+        padding: 30px 0;
+    }
+
+    .process-header {
+        margin-bottom: 40px;
+    }
+
+    .process-header h2 {
+        font-size: 26px;
+    }
+}
+
+/* ==========================================================================
+   20. MOBILE MENU TOGGLE ANIMATION
+   ========================================================================== */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Active state for hamburger → X */
+.mobile-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 992px) {
+    .mobile-toggle {
+        display: flex;
+    }
+}
+
+/* Home theme mobile toggle color */
+.home-theme .mobile-toggle span {
+    background-color: #2d3748;
+}
+
+/* ==========================================================================
+   21. EXPANDED RESPONSIVE BREAKPOINTS (Requested Update)
+   ========================================================================== */
+
+/* --- 4K / Ultra Large Screens (min-width: 2560px) --- */
+@media (min-width: 2560px) {
+    .container {
+        max-width: 1800px;
+        /* Consistent 4K container width across all pages */
+        padding: 0 60px;
+    }
+
+    body {
+        font-size: 20px;
+        /* Larger base font for readability */
+    }
+
+    .section {
+        padding: 150px 0;
+        /* More airy spacing */
+    }
+
+    h1,
+    .hero-slider-title,
+    .inner-hero h1 {
+        font-size: 84px;
+    }
+
+    h2,
+    .section-title {
+        font-size: 64px;
+    }
+
+    p,
+    .section-subtitle {
+        font-size: 22px;
+        max-width: 1000px;
+    }
+
+    /* Scaling up grid items */
+    .mobile-tech-item-card {
+        flex: 0 0 240px !important;
+    }
+
+    .mobile-tech-icon-circle {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    .service-card-rich {
+        padding: 40px !important;
+    }
+
+    /* Inner page hero scaling */
+    .inner-hero-grid,
+    .inner-hero .container,
+    .inner-hero-modern .container {
+        max-width: 1800px;
+    }
+
+    /* Overview and content blocks scaling */
+    .overview-full-text,
+    .overview-content-full,
+    .services-intro-content,
+    .why-choose-content,
+    .journey-content,
+    .methodologies-content,
+    .hero-minimal-content,
+    .strategy-frame-container {
+        max-width: min(100%, 1400px);
+    }
+
+    /* Grid gaps scaling */
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        gap: 40px;
+    }
+}
+
+/* --- Large Desktop / 1920p (min-width: 1920px) --- */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 40px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    .section {
+        padding: 120px 0;
+    }
+
+    h1,
+    .hero-slider-title,
+    .inner-hero h1 {
+        font-size: 68px;
+    }
+
+    h2,
+    .section-title {
+        font-size: 48px;
+    }
+
+    p,
+    .section-subtitle {
+        font-size: 20px;
+    }
+
+    .inner-hero-grid,
+    .inner-hero .container,
+    .inner-hero-modern .container {
+        max-width: 1400px;
+    }
+
+    .service-card-rich {
+        padding: 36px !important;
+    }
+}
+
+/* --- Laptop L (max-width: 1440px) --- */
+@media (max-width: 1440px) {
+    .container {
+        max-width: 1320px;
+    }
+
+    .hero-slider-title {
+        font-size: 48px;
+    }
+
+    .mega-menu .container {
+        max-width: 1280px;
+    }
+}
+
+/* --- Laptop (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .hero-slider-title {
+        font-size: 42px;
+    }
+
+    /* Fix flex layouts that might be too tight */
+    .service-tabs-layout {
+        gap: 25px !important;
+    }
+
+    .ds-nav-col {
+        flex: 0 0 32% !important;
+    }
+
+    .ds-content-col {
+        flex: 0 0 68% !important;
+    }
+
+    .mega-grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- Tablet / iPad (max-width: 768px) - Reinforcement --- */
+@media (max-width: 768px) {
+
+    /* Fix specific inline styles for Service Tabs from software-development.html */
+    .service-tabs-layout {
+        display: flex;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .service-nav-col {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0;
+        padding-right: 0 !important;
+        padding-bottom: 20px;
+    }
+
+    .service-content-col {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+
+    /* Fix Solution Grid from web-app-development.html */
+    .solution-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .solution-card,
+    .solution-cta-card {
+        width: 100%;
+    }
+
+    /* General Table Scroll */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    /* Mega Menu Grid Mobile Fix */
+    .mega-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Index.html Service Section Responsive Fix */
+    .services-section {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .services-section h2 {
+        font-size: 28px !important;
+    }
+
+    /* Dynamic Services Panel Responsive */
+    .section-dynamic-services {
+        padding: 60px 0 !important;
+    }
+
+    .dynamic-services-layout {
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .ds-nav-col {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 20px !important;
+    }
+
+    .ds-content-col {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+
+    /* Hero Slider Controls Responsive (768px) */
+    .hero-slider-controls-wrapper {
+        margin-top: 25px;
+        padding: 0 20px;
+        justify-content: center !important;
+        /* Center arrows with pagination */
+        gap: 30px;
+        /* Comfortable spacing for tablet */
+    }
+
+    .arrow-line {
+        display: none !important;
+    }
+
+    .arrow-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .hero-slider-slide {
+        width: 95% !important;
+        /* Fill more space on tablet */
+        max-width: 100% !important;
+    }
+
+    .hero-slider-image {
+        height: 45vh !important;
+        /* Slightly taller for better presence */
+        min-height: 320px !important;
+    }
+}
+
+/* --- Mobile L (max-width: 425px) --- */
+@media (max-width: 425px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    /* Adjust hero font size */
+    .inner-hero h1 {
+        font-size: 28px;
+    }
+
+    /* Adjust buttons to be full width */
+    .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    /* Mega menu adjustments */
+    .mega-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Header CTA hide or adjust */
+    .header-cta {
+        display: none !important;
+    }
+
+    .hero-slider-title {
+        font-size: 26px !important;
+    }
+
+    .section-title {
+        font-size: 24px !important;
+    }
+}
+
+/* --- Mobile M (max-width: 375px) --- */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .stat-item h3 {
+        font-size: 32px;
+    }
+}
+
+/* --- Mobile S (max-width: 320px) --- */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    /* Critical font size reduction for very small screens */
+    body {
+        font-size: 14px;
+    }
+
+    h1,
+    .hero-slider-title {
+        font-size: 20px !important;
+    }
+
+    h2,
+    .section-title {
+        font-size: 20px !important;
+    }
+
+    h3 {
+        font-size: 18px !important;
+    }
+
+    .section-subtitle {
+        font-size: 13px !important;
+    }
+
+    /* Force simple layout */
+    .d-flex {
+        flex-wrap: wrap;
+    }
+
+    /* Ensure no horizontal scroll */
+    img {
+        max-width: 100%;
+    }
+
+    /* Adjust padding for sections */
+    .section,
+    .section-overview,
+    .inner-hero {
+        padding: 30px 0 !important;
+    }
+
+    /* Hero Slider Controls Mobile S */
+    .hero-slider-controls-wrapper {
+        margin-top: 15px;
+        padding: 0 10px;
+        justify-content: center !important;
+        /* Center all elements together */
+        gap: 15px;
+        /* Fixed space between arrows and dots */
+    }
+
+    .arrow-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 10px;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .hero-slider-pagination {
+        gap: 4px !important;
+    }
+
+    .swiper-pagination-bullet {
+        width: 15px !important;
+        /* Smaller bullets for 320px */
+        height: 2px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 25px !important;
+    }
+}
+
+/* ==========================================================================
+   22. E2E SERVICES GRID RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .e2e-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .e2e-card {
+        padding: 30px;
+    }
+
+    /* Software Development Specific Fixes */
+    .hero-split-layout {
+        flex-direction: column;
+    }
+
+    .hero-text {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Ensure Stats are horizontal on Tablet (768px) */
+    .hero-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Fix Service Tabs Content Width */
+    #service-desc {
+        max-width: 100% !important;
+    }
+}
+
+/* ==========================================================================
+   23. SOFTWARE DEVELOPMENT PAGE SPECIFIC MOBILE REFINEMENTS
+   ========================================================================== */
+
+/* --- Mobile L (425px) --- */
+@media (max-width: 425px) {
+    .inner-hero {
+        padding: 80px 0 50px !important;
+    }
+
+    .inner-hero h1 {
+        font-size: 28px !important;
+        line-height: normal !important;
+    }
+
+    .inner-hero-grid {
+        gap: 20px;
+    }
+
+    .hero-content-left p {
+        font-size: 15px !important;
+        line-height: 1.5;
+    }
+}
+
+/* --- Mobile M (375px) --- */
+@media (max-width: 375px) {
+    .inner-hero h1 {
+        font-size: 26px !important;
+    }
+
+    .hero-content-left p {
+        font-size: 14px !important;
+    }
+}
+
+/* --- Mobile S (320px) --- */
+@media (max-width: 320px) {
+    .inner-hero h1 {
+        font-size: 24px !important;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px !important;
+    }
+}
+
+/* ==========================================================================
+   24. GLOBAL CTA BANNER FIXES (Mobile Overflow)
+   ========================================================================== */
+
+/* Tablet & Mobile: Stack content and reduce padding */
+@media (max-width: 768px) {
+    .cta-banner-wrapper {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 40px 24px !important;
+        gap: 25px !important;
+    }
+
+    .cta-banner-text {
+        min-width: auto !important;
+        width: 100% !important;
+        flex: 0 0 auto !important;
+    }
+
+    .cta-banner-text h2 {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+    }
+
+    .cta-banner-text h2 br {
+        display: none;
+    }
+
+    .cta-banner-action {
+        width: 100%;
+    }
+}
+
+/* Mobile S: Further reduction */
+@media (max-width: 320px) {
+    .cta-banner-wrapper {
+        padding: 30px 15px !important;
+    }
+
+    .cta-banner-text h2 {
+        font-size: 22px !important;
+    }
+
+    .contact-btn {
+        width: 100% !important;
+        display: block !important;
+        padding: 14px 20px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* ==========================================================================
+   25. ENTERPRISE SOFTWARE SOLUTIONS PAGE RESPONSIVE
+   ========================================================================== */
+
+/* --- 4K (2560px) — Enterprise-specific overrides only (container handled in section 21) --- */
+@media (min-width: 2560px) {
+    .inner-hero-modern h1 {
+        font-size: 80px !important;
+    }
+
+    .inner-hero-modern p {
+        font-size: 22px !important;
+        max-width: 900px !important;
+    }
+
+    .section-enterprise-overview h2,
+    .services-intro-content h2,
+    .why-vast-intro h2 {
+        font-size: 52px !important;
+    }
+
+    .overview-text-body,
+    .services-intro-content p,
+    .why-vast-intro p {
+        font-size: 24px !important;
+    }
+
+    .strategy-text {
+        font-size: 42px !important;
+    }
+}
+
+/* ==========================================================================
+   26. TIMELINE SECTION RESPONSIVE (Product Re-engineering)
+   ========================================================================== */
+@media (max-width: 991px) {
+    .timeline-container {
+        padding-left: 60px;
+        /* Reduced from 120px */
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-node {
+        left: -60px;
+        width: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-container {
+        padding-left: 0 !important;
+        margin: 0 !important;
+    }
+
+    .timeline-line {
+        display: none !important;
+    }
+
+    .timeline-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin-bottom: 40px !important;
+        background: transparent !important;
+    }
+
+    .timeline-node {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        margin-bottom: 15px !important;
+        justify-content: flex-start !important;
+    }
+
+    .timeline-connector-h {
+        display: none !important;
+    }
+
+    /* Style the number to look like a badge on mobile */
+    .timeline-number {
+        margin-bottom: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .timeline-card {
+        padding: 30px 20px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    .timeline-card .icon-box {
+        margin-bottom: 5px;
+        font-size: 32px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .timeline-card .icon-box i {
+        color: #FFC01D;
+    }
+
+    .timeline-card .content h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .timeline-card .content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+
+/* Specific refinement for 320px */
+@media (max-width: 320px) {
+    .timeline-card {
+        padding: 25px 15px !important;
+    }
+
+    .timeline-card .content h4 {
+        font-size: 18px;
+    }
+}
+
+/* --- Laptop L (1440px) --- */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
+    }
+
+    .inner-hero-modern h1 {
+        font-size: 64px;
+    }
+}
+
+/* --- Laptop (1024px) --- */
+@media (max-width: 1024px) {
+    .tabs-container {
+        gap: 40px !important;
+    }
+
+    .tabs-sidebar {
+        flex: 0 0 280px !important;
+    }
+
+    .process-grid-cinematic {
+        gap: 30px !important;
+    }
+
+    .cinematic-step {
+        flex: 0 0 22% !important;
+        /* Forces 4 per row nicely or wraps if needed */
+        min-width: 180px;
+    }
+}
+
+/* --- Tablet (768px) --- */
+@media (max-width: 768px) {
+    .inner-hero-modern {
+        padding: 80px 0 50px !important;
+    }
+
+    .inner-hero-modern h1 {
+        font-size: 36px !important;
+    }
+
+    .hero-content-top {
+        margin-bottom: 40px !important;
+    }
+
+    .hero-stats-bottom {
+        gap: 25px !important;
+        justify-content: flex-start !important;
+    }
+
+    .stat-item-modern {
+        padding-left: 15px !important;
+    }
+
+    .stat-value {
+        font-size: 26px !important;
+    }
+
+    .section-enterprise-overview,
+    .section-services-intro,
+    .section-why-vast {
+        padding: 60px 0 !important;
+    }
+
+    .section-enterprise-overview h2,
+    .services-intro-content h2,
+    .why-vast-intro h2 {
+        font-size: 28px !important;
+    }
+
+    .strategy-frame-container {
+        padding: 35px 25px !important;
+    }
+
+    .strategy-text {
+        font-size: 22px !important;
+    }
+
+    .why-vast-intro p {
+        font-size: 16px !important;
+    }
+}
+
+/* --- Mobile L (425px) --- */
+@media (max-width: 425px) {
+    .inner-hero-modern h1 {
+        font-size: 30px !important;
+    }
+
+    .stat-value {
+        font-size: 22px !important;
+    }
+
+    .stat-label {
+        font-size: 9px !important;
+    }
+
+    .tab-pane h3 {
+        font-size: 24px !important;
+    }
+
+    .cinematic-step {
+        flex: 0 0 100% !important;
+    }
+}
+
+/* --- Mobile M (375px) --- */
+@media (max-width: 375px) {
+    .inner-hero-modern h1 {
+        font-size: 28px !important;
+    }
+
+    .strategy-text {
+        font-size: 20px !important;
+    }
+}
+
+/* --- Mobile S (320px) --- */
+@media (max-width: 320px) {
+    .inner-hero-modern h1 {
+        font-size: 26px !important;
+    }
+
+    .inner-hero-modern p {
+        font-size: 15px !important;
+    }
+
+    .strategy-frame-container {
+        padding: 25px 15px !important;
+    }
+
+    .strategy-text {
+        font-size: 17px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Fix Framed Boxes on small screens */
+    .framed-value-box {
+        padding: 35px 15px 25px !important;
+    }
+
+    .framed-value-box .box-heading {
+        font-size: 14px !important;
+        left: 10px !important;
+        padding: 0 5px !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+        max-width: 90% !important;
+        top: -18px !important;
+    }
+
+    .cta-content h2 {
+        font-size: 22px !important;
+    }
+
+    .cinematic-step {
+        flex: 0 0 100% !important;
+        margin-bottom: 30px;
+    }
+}
+
+/* ==========================================================================
+   26. FOOTER RESPONSIVE FIX (TABLET 768px)
+   ========================================================================== */
+@media (min-width: 501px) and (max-width: 768px) {
+    .footer .grid-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+    }
+
+    /* Ensure the contact column spans full width of the 2-column layout */
+    .footer .footer-col[style*="span 2"] {
+        grid-column: span 2 !important;
+    }
+}
+
+/* ==========================================================================
+   27. PRODUCT DEVELOPMENT ACCORDION (MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* Hide the sidebar */
+    .product-tabs-sidebar {
+        display: none !important;
+    }
+
+    /* Change wrapper to column */
+    .product-tabs-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0 !important;
+    }
+
+    /* Show and style accordion headers */
+    .mobile-accordion-header {
+        display: flex !important;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 18px 25px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 15px;
+        /* Separate if inactive */
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 16px;
+        color: #1e293b;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    /* When a pane is active, the header above it should look different */
+    .mobile-accordion-header.active {
+        background-color: #f8fafc;
+        border-left: 4px solid #FFC01D !important;
+        /* Yellow border */
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 0;
+        /* Remove gap */
+        border-bottom: none;
+    }
+
+    /* Pane styling adjustments */
+    .product-tabs-content {
+        width: 100% !important;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: block !important;
+        /* Ensure content area is visible */
+    }
+
+    .v-tab-pane {
+        display: none;
+        padding: 25px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0 !important;
+        border-top: none !important;
+        /* Connect to header */
+        border-radius: 0 0 8px 8px !important;
+        margin-bottom: 15px;
+    }
+
+    .v-tab-pane.active {
+        display: block !important;
+        animation: fadeIn 0.3s ease-out;
+    }
+}
+
+
+/* Hide accordion headers on desktop and ensure pane visibility */
+@media (min-width: 769px) {
+    .mobile-accordion-header {
+        display: none !important;
+    }
+
+    /* Force active pane to be visible on desktop, overcoming any JS inline styles */
+    .tab-pane.active {
+        display: block !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ==========================================================================
+   28. ENTERPRISE SOFTWARE ACCORDION (MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* Hide the sidebar */
+    .tabs-sidebar {
+        display: none !important;
+    }
+
+    /* Style the number span in accordion header */
+    .mobile-accordion-header span {
+        font-weight: 700;
+        margin-right: 15px;
+        color: #cbd5e1;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .mobile-accordion-header.active span {
+        color: #0f172a;
+        /* Dark color when active */
+    }
+
+    /* Ensure tabs content wrapper behaves */
+    .tabs-content {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+/* ==========================================================================
+   29. WEB APP DEVELOPMENT ACCORDION (MOBILE)
+   ========================================================================== */
+@media (max-width: 991px) {
+
+    /* Hide sidebar */
+    .tabbed-services-section .tabs-list {
+        display: none !important;
+    }
+
+    /* Reset container */
+    .tabbed-services-section .tabs-container {
+        flex-direction: column;
+    }
+
+    .tabbed-services-section .tab-panels {
+        padding: 0;
+        background: transparent !important;
+    }
+
+    /* Style the header */
+    .tabbed-services-section .mobile-accordion-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 25px;
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        margin-top: 15px;
+        margin-bottom: 0;
+        border-radius: 8px;
+        font-weight: 700;
+        color: #64748b;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    /* Active State Styling connecting to Radio Button */
+    #tab1:checked~.container .tabs-container .tab-panels label[for="tab1"],
+    #tab2:checked~.container .tabs-container .tab-panels label[for="tab2"],
+    #tab3:checked~.container .tabs-container .tab-panels label[for="tab3"],
+    #tab4:checked~.container .tabs-container .tab-panels label[for="tab4"],
+    #tab5:checked~.container .tabs-container .tab-panels label[for="tab5"],
+    #tab6:checked~.container .tabs-container .tab-panels label[for="tab6"],
+    #tab7:checked~.container .tabs-container .tab-panels label[for="tab7"],
+    #tab8:checked~.container .tabs-container .tab-panels label[for="tab8"],
+    #tab9:checked~.container .tabs-container .tab-panels label[for="tab9"] {
+        background-color: #ffffff;
+        color: #0f172a;
+        /* Top orange border as seen in requirement/image */
+        border-top: 3px solid #FFC01D;
+        border-bottom: 1px solid transparent;
+        /* Hide bottom border to merge with panel */
+        border-radius: 8px 8px 0 0;
+    }
+
+    /* Style the panel */
+    .tabbed-services-section .tab-panel {
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 0;
+        padding: 30px 25px;
+        background: #fff;
+    }
+
+    /* Ensure unrelated active classes don't interfere */
+    .tabbed-services-section .tab-panel.active {
+        display: block;
+        /* Relying on CSS checked selector mainly, but keep this safe */
+    }
+}
+
+/* 320px specifics */
+@media (max-width: 320px) {
+    .tabbed-services-section .mobile-accordion-header {
+        font-size: 14px;
+        padding: 15px 15px;
+    }
+
+    .tabbed-services-section .tab-panel {
+        padding: 20px 15px;
+    }
+}
+
+/* ==========================================================================
+   Web Development Page - Mobile Accordion (Services V Tabs)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* Hide Vertical Nav Sidebar */
+    .services-v-nav {
+        display: none !important;
+    }
+
+    /* Show Mobile Accordion Headers */
+    .mobile-accordion-header {
+        display: block;
+    }
+
+    /* Adjust Content Container */
+    .services-v-content {
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    /* Pane Styling on Mobile */
+    .v-tab-pane.active {
+        display: block;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        background: #fff;
+        padding: 20px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin-bottom: 15px;
+        /* Space after active content before next header */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .v-tab-pane {
+        margin-bottom: 0;
+    }
+
+    /* Reset Grid Layout for mobile - IMPORTANT */
+    .services-v-tabs-grid {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ==========================================================================
+   Floating CTA Banner (Mobile)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .section-floating-cta .floating-cta-box {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 30px !important;
+        margin-top: 20px !important;
+        gap: 20px !important;
+    }
+
+    .section-floating-cta h3 {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .section-floating-cta p {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .section-floating-cta .btn-primary {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 15px 25px !important;
+        font-size: 16px !important;
+        white-space: normal !important;
+    }
+}
+
+/* ==========================================================================
+   320px Specific Fixes (Services V-Tabs & General)
+   ========================================================================== */
+@media (max-width: 374px) {
+
+    /* Adjust vertical tab pane padding */
+    .v-tab-pane.active {
+        padding: 15px !important;
+    }
+
+    /* Stack icon and title in service panes */
+    .v-tab-pane>div:first-child {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Adjust Icon Size */
+    .v-tab-pane>div:first-child>div:first-child {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+
+    /* Adjust Title Font Size */
+    .v-tab-pane h3 {
+        font-size: 20px !important;
+    }
+
+    /* Adjust Body Text */
+    .v-tab-pane p {
+        font-size: 14px !important;
+    }
+
+    /* Hero Section Fixes for 320px */
+    .mobile-hero-v2 {
+        padding: 120px 0 50px 0 !important;
+        /* Increased top padding to clear header */
+        overflow: hidden;
+    }
+
+    .mobile-hero-v2 .hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .mobile-hero-v2 h1 {
+        font-size: 32px !important;
+        /* Reduce from 52px */
+        line-height: 1.2 !important;
+    }
+
+    .mobile-hero-v2 p {
+        font-size: 15px !important;
+        margin-bottom: 25px !important;
+    }
+
+    /* Fix Hero Button Overflow */
+    .mobile-hero-v2 a[href="#contact"] {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 15px 20px !important;
+        font-size: 16px !important;
+        white-space: nowrap !important;
+    }
+
+    .mobile-hero-v2 .hero-stats {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* Platform Cards Fix for 320px */
+    .platforms-grid {
+        grid-template-columns: 1fr !important;
+        display: block !important;
+        /* Fallback/Override */
+    }
+
+    .platforms-grid>div {
+        margin-bottom: 20px;
+    }
+
+    .platform-card {
+        padding: 30px 20px !important;
+    }
+
+    .platform-card {
+        padding: 30px 20px !important;
+    }
+}
+
+/* ==========================================================================
+   Inner Hero Section (API Development & General)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .inner-hero {
+        padding: 100px 0 50px 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .hero-flex-layout {
+        flex-direction: column;
+        gap: 40px !important;
+    }
+
+    .hero-col-left,
+    .hero-col-right {
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        text-align: center;
+        /* Center align for mobile */
+    }
+
+    .hero-col-left h1 {
+        font-size: 42px !important;
+    }
+
+    /* Center Badge */
+    .hero-col-left>div:first-child {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Center text max-width */
+    .hero-col-left p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Expertise Icons Center */
+    .hero-col-left>div>div[style*="display: flex"] {
+        justify-content: center;
+    }
+
+    /* CTA Row Center */
+    .hero-col-left>div[style*="display: flex; flex-wrap: wrap"] {
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px !important;
+    }
+
+    .hero-col-right {
+        /* order: -1; Removed to keep text first */
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inner-hero h1 {
+        font-size: 32px !important;
+    }
+
+    .hero-col-left .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+/* ==========================================================================
+   Testing & QA Page Specific Responsiveness
+   ========================================================================== */
+
+/* Default State (Desktop) */
+.mobile-perk-header {
+    display: none;
+}
+
+/* Tablet & Mobile (Matching the breakpoint typical for this layout shift) */
+@media (max-width: 992px) {
+
+    /* Brand Story Stacking */
+    .brand-story-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+        text-align: center;
+    }
+
+    .brand-story-left h2 {
+        font-size: 36px !important;
+    }
+
+    .brand-story-left>div {
+        margin: 0 auto 30px auto !important;
+        /* Center the accent line */
+    }
+
+    /* QA Perks - Convert to Accordion */
+    .qa-perks-wrapper {
+        grid-template-columns: 1fr !important;
+        display: block !important;
+        /* Stack vertically */
+    }
+
+    .qa-perks-nav,
+    .qa-vertical-divider {
+        display: none !important;
+    }
+
+    .mobile-perk-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 18px 24px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+    }
+
+    .mobile-perk-header:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+    }
+
+    .mobile-perk-header.active {
+        background: #f59e0b;
+        color: #fff;
+        border-color: #f59e0b;
+        margin-bottom: 0;
+        /* Remove margin when content follows immediately */
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .mobile-perk-header i {
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-perk-header.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Pane Styling in Accordion Mode */
+    .perk-pane {
+        display: none;
+        /* Hidden by default */
+        padding: 24px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        margin-bottom: 20px;
+        animation: none !important;
+        /* Disable fade-in slide-up for smoother accordion feel, or keep it */
+    }
+
+    .perk-pane.active {
+        display: block;
+        animation: fadeIn 0.3s ease !important;
+    }
+
+    .perk-pane h3 {
+        font-size: 24px !important;
+        /* Smaller heading on mobile */
+        margin-top: 10px;
+    }
+
+    .perk-icon-wrap {
+        margin: 0 auto 20px auto !important;
+        /* Center icon */
+    }
+
+    .perk-pane {
+        text-align: center;
+        /* Generally looks better centered on mobile cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-qa-perks h2 {
+        font-size: 32px !important;
+    }
+}

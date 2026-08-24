@@ -1,0 +1,21 @@
+{
+  "name": "vastites.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate-config.js",
+  "scripts": {
+    "setup": "node generate-config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.vastites.com/vastites/vastites.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
