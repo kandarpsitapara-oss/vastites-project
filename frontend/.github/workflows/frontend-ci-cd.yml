@@ -1,0 +1,282 @@
+# ============================================================
+# Vastites Frontend CI/CD Pipeline
+# ============================================================
+#
+# This workflow performs both CI and CD for the frontend.
+#
+# CI:
+#   1. Checkout frontend source code
+#   2. Setup/check Node.js and npm
+#   3. Create .env from GitHub Secret
+#   4. Install frontend dependencies
+#   5. Run frontend setup/config generation
+#
+# CD:
+#   1. Runs only when CI succeeds
+#   2. Connects to the AWS EC2 server using SSH
+#   3. Deploys frontend files using rsync
+#   4. Creates the production .env file on the server
+#   5. Verifies the deployment
+#
+# Deployment server:
+#   /var/www/vastites-repo/frontend
+#
+# Deployment user:
+#   frontend
+#
+# ============================================================
+
+name: Vastites Frontend CI/CD
+
+
+# ============================================================
+# WORKFLOW TRIGGERS
+# ============================================================
+#
+# The pipeline automatically starts whenever code is pushed
+# to the development branch.
+#
+# workflow_dispatch allows us to manually start the pipeline
+# from GitHub Actions when required.
+#
+on:
+  push:
+    branches:
+      - development
+
+  workflow_dispatch:
+
+
+# ============================================================
+# JOBS
+# ============================================================
+
+jobs:
+
+  # ==========================================================
+  # CI JOB
+  # ==========================================================
+  #
+  # CI validates the frontend before deployment.
+  #
+  # If any CI step fails, the CD job will NOT run.
+  #
+  ci:
+    name: Frontend CI
+    runs-on: self-hosted
+
+    steps:
+
+      # ------------------------------------------------------
+      # Step 1: Checkout Repository
+      # ------------------------------------------------------
+      #
+      # Downloads the GitHub repository code into the runner.
+      #
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      # ------------------------------------------------------
+      # Step 2: Check Node.js and npm
+      # ------------------------------------------------------
+      #
+      # Displays the Node.js and npm versions available
+      # on the self-hosted runner.
+      #
+      - name: Check Node.js and npm
+        run: |
+          node -v
+          npm -v
+
+
+      # ------------------------------------------------------
+      # Step 3: Create Frontend Environment File
+      # ------------------------------------------------------
+      #
+      # FRONTEND_ENV is stored securely in GitHub Secrets.
+      #
+      # The .env file is created only inside the CI runner.
+      #
+      - name: Create Frontend .env
+        working-directory: ./frontend
+        run: |
+          printf '%s\n' "${{ secrets.FRONTEND_ENV }}" > .env
+
+
+      # ------------------------------------------------------
+      # Step 4: Install Frontend Dependencies
+      # ------------------------------------------------------
+      #
+      # package.json and package-lock.json are located inside
+      # the frontend directory.
+      #
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: |
+          npm ci
+
+
+      # ------------------------------------------------------
+      # Step 5: Run Frontend Setup
+      # ------------------------------------------------------
+      #
+      # package.json contains:
+      #
+      # "setup": "node generate-config.js"
+      #
+      # This generates the required frontend configuration.
+      #
+      - name: Run Frontend Setup
+        working-directory: ./frontend
+        run: |
+          npm run setup
+
+
+      # ------------------------------------------------------
+      # Step 6: CI Success Message
+      # ------------------------------------------------------
+      #
+      - name: Frontend CI Successful
+        run: |
+          echo "========================================="
+          echo "Frontend CI completed successfully."
+          echo "Frontend is ready for deployment."
+          echo "========================================="
+
+
+  # ==========================================================
+  # CD JOB
+  # ==========================================================
+  #
+  # CD runs only after the CI job completes successfully.
+  #
+  # needs: ci means:
+  #
+  # CI SUCCESS  -> CD RUNS
+  # CI FAILURE  -> CD IS SKIPPED
+  #
+  cd:
+    name: Frontend CD
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ------------------------------------------------------
+      # Step 1: Checkout Repository
+      # ------------------------------------------------------
+      #
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      # ------------------------------------------------------
+      # Step 2: Setup SSH
+      # ------------------------------------------------------
+      #
+      # FRONTEND_SSH_KEY contains the private SSH key.
+      #
+      # The private key is never stored inside the repository.
+      #
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.FRONTEND_SSH_KEY }}
+
+
+      # ------------------------------------------------------
+      # Step 3: Add EC2 Server to known_hosts
+      # ------------------------------------------------------
+      #
+      # FRONTEND_HOST contains the EC2 server IP/hostname.
+      #
+      - name: Add EC2 Host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.FRONTEND_HOST }}" >> ~/.ssh/known_hosts
+
+
+      # ------------------------------------------------------
+      # Step 4: Test SSH Connection
+      # ------------------------------------------------------
+      #
+      # FRONTEND_USER should contain:
+      #
+      # frontend
+      #
+      - name: Test SSH Connection
+        run: |
+          ssh \
+            "${{ secrets.FRONTEND_USER }}@${{ secrets.FRONTEND_HOST }}" \
+            "echo 'SSH connection successful.'"
+
+
+      # ------------------------------------------------------
+      # Step 5: Deploy Frontend Files
+      # ------------------------------------------------------
+      #
+      # Only the frontend directory is deployed.
+      #
+      # GitHub repository:
+      #
+      #   ./frontend/
+      #
+      # EC2 server:
+      #
+      #   /var/www/vastites-repo/frontend/
+      #
+      # .env is excluded because it will be created separately
+      # from the FRONTEND_ENV GitHub Secret.
+      #
+      - name: Deploy Frontend Files
+        run: |
+          rsync -avz --delete \
+            --exclude=".git" \
+            --exclude=".env" \
+            --exclude="node_modules" \
+            ./frontend/ \
+            "${{ secrets.FRONTEND_USER }}@${{ secrets.FRONTEND_HOST }}:/var/www/vastites-repo/frontend/"
+
+
+      # ------------------------------------------------------
+      # Step 6: Create Production .env on EC2
+      # ------------------------------------------------------
+      #
+      # FRONTEND_ENV is securely transferred to the EC2 server.
+      #
+      - name: Create Frontend .env on EC2
+        run: |
+          printf '%s\n' "${{ secrets.FRONTEND_ENV }}" > frontend.env
+
+          scp \
+            frontend.env \
+            "${{ secrets.FRONTEND_USER }}@${{ secrets.FRONTEND_HOST }}:/var/www/vastites-repo/frontend/.env"
+
+          rm -f frontend.env
+
+
+      # ------------------------------------------------------
+      # Step 7: Verify Deployment
+      # ------------------------------------------------------
+      #
+      # Confirms that the frontend files exist on the EC2
+      # deployment directory.
+      #
+      - name: Verify Frontend Deployment
+        run: |
+          ssh \
+            "${{ secrets.FRONTEND_USER }}@${{ secrets.FRONTEND_HOST }}" \
+            "ls -la /var/www/vastites-repo/frontend"
+
+
+      # ------------------------------------------------------
+      # Step 8: Deployment Success
+      # ------------------------------------------------------
+      #
+      - name: Frontend CD Successful
+        run: |
+          echo "========================================="
+          echo "Frontend CD completed successfully."
+          echo "Frontend deployment completed."
+          echo "========================================="
