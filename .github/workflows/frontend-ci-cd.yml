@@ -194,7 +194,7 @@ jobs:
       - name: Add EC2 Host to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H "${{ secrets.SSH_PRIVATE_KEY }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "${{ secrets.FRONTEND_HOST }}" >> ~/.ssh/known_hosts
 
 
       # ------------------------------------------------------
