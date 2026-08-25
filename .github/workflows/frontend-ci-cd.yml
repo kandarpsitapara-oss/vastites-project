@@ -42,7 +42,7 @@ name: Vastites Frontend CI/CD
 on:
   push:
     branches:
-      - development
+      - main
 
   workflow_dispatch:
 
