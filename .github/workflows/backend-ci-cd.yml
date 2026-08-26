@@ -16,16 +16,18 @@
 # CD:
 #   1. Runs only after CI succeeds
 #   2. Connects to EC2 using SSH
-#   3. Deploys backend source files
-#   4. Creates production .env
-#   5. Installs dependencies on EC2
-#   6. Builds Strapi on EC2
-#   7. Restarts PM2 backend
-#   8. Verifies deployment
+#   3. Prepares deployment directory
+#   4. Deploys backend source files
+#   5. Creates production .env
+#   6. Installs dependencies on EC2
+#   7. Builds Strapi on EC2
+#   8. Restarts PM2 backend
+#   9. Verifies deployment
 #
 # ============================================================
 
 name: Vastites Backend CI/CD
+
 
 # ============================================================
 # WORKFLOW TRIGGERS
@@ -37,6 +39,7 @@ on:
       - main
 
   workflow_dispatch:
+
 
 # ============================================================
 # JOBS
@@ -96,14 +99,13 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 5: Prepare Deployment Directory
+      # Step 5: Install Backend Dependencies
       # ------------------------------------------------------
 
-      - name: Prepare Deployment Directory
+      - name: Install Backend Dependencies
+        working-directory: ./backend/vastites-cms
         run: |
-          ssh \
-            "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "sudo mkdir -p '${{ secrets.BACKEND_PATH }}' && sudo chown -R '${{ secrets.BACKEND_USER }}':'${{ secrets.BACKEND_USER }}' '${{ secrets.BACKEND_PATH }}'"
+          npm ci
 
 
       # ------------------------------------------------------
@@ -189,7 +191,18 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 5: Deploy Backend Source Files
+      # Step 5: Prepare Deployment Directory
+      # ------------------------------------------------------
+
+      - name: Prepare Deployment Directory
+        run: |
+          ssh \
+            "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
+            "sudo mkdir -p '${{ secrets.BACKEND_PATH }}' && sudo chown -R '${{ secrets.BACKEND_USER }}':'${{ secrets.BACKEND_USER }}' '${{ secrets.BACKEND_PATH }}'"
+
+
+      # ------------------------------------------------------
+      # Step 6: Deploy Backend Source Files
       # ------------------------------------------------------
 
       - name: Deploy Backend Files
@@ -206,7 +219,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 6: Create Production .env
+      # Step 7: Create Production .env
       # ------------------------------------------------------
 
       - name: Create Backend .env on EC2
@@ -221,7 +234,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 7: Install Backend Dependencies on EC2
+      # Step 8: Install Backend Dependencies on EC2
       # ------------------------------------------------------
 
       - name: Install Backend Dependencies on EC2
@@ -232,7 +245,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 8: Build Backend on EC2
+      # Step 9: Build Backend on EC2
       # ------------------------------------------------------
 
       - name: Build Backend on EC2
@@ -243,7 +256,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 9: Restart PM2 Backend
+      # Step 10: Restart PM2 Backend
       # ------------------------------------------------------
 
       - name: Restart Backend with PM2
@@ -254,7 +267,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 10: Verify Backend
+      # Step 11: Verify Backend
       # ------------------------------------------------------
 
       - name: Verify Backend
@@ -265,7 +278,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 11: CD Success
+      # Step 12: CD Success
       # ------------------------------------------------------
 
       - name: Backend CD Successful
