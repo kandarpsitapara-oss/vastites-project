@@ -303,9 +303,10 @@ jobs:
 
       - name: Restart Backend with PM2
         run: |
-          ssh \
-            "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "cd '${{ secrets.BACKEND_PATH }}' && pm2 start dist/index.js --name strapi-backend --update-env 2>/dev/null || pm2 restart strapi-backend --update-env && echo '✓ PM2 restarted'"
+         ssh \
+           "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
+           "cd '${{ secrets.BACKEND_PATH }}' && if pm2 list | grep -q strapi-backend; then pm2 restart strapi-backend --update-env; else pm2 start ecosystem.config.js --update-env; fi && echo '✓ PM2 process સંચાલિત થયો'"
+            
 
 
       # ======================================================
