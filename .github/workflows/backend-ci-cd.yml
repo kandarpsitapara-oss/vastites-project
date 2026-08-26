@@ -241,7 +241,7 @@ jobs:
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "sudo chown -R backend:backend '${{ secrets.BACKEND_PATH }}' && cd '${{ secrets.BACKEND_PATH }}' && npm ci"
+            "cd '${{ secrets.BACKEND_PATH }}' && sudo -u backend npm ci"
 
 
       # ------------------------------------------------------
@@ -252,7 +252,7 @@ jobs:
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "cd '${{ secrets.BACKEND_PATH }}' && npm run build"
+            "cd '${{ secrets.BACKEND_PATH }}' && sudo -u backend npm run build"
 
 
       # ------------------------------------------------------
