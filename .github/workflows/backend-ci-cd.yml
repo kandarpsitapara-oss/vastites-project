@@ -8,8 +8,10 @@
 #   1. Checkout repository
 #   2. Check Node.js and npm
 #   3. Create backend .env
-#   4. Install dependencies
-#   5. Build Strapi backend
+#   4. Cache npm dependencies
+#   5. Install dependencies
+#   6. Update Browserslist database
+#   7. Build Strapi backend
 #
 # CD:
 #   1. Runs only after CI succeeds
@@ -25,7 +27,6 @@
 
 name: Vastites Backend CI/CD
 
-
 # ============================================================
 # WORKFLOW TRIGGERS
 # ============================================================
@@ -36,7 +37,6 @@ on:
       - main
 
   workflow_dispatch:
-
 
 # ============================================================
 # JOBS
@@ -83,7 +83,20 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 4: Install Backend Dependencies
+      # Step 4: Cache npm Dependencies
+      # ------------------------------------------------------
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ./backend/vastites-cms/node_modules
+          key: ${{ runner.os }}-backend-npm-${{ hashFiles('backend/vastites-cms/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-backend-npm-
+
+
+      # ------------------------------------------------------
+      # Step 5: Install Backend Dependencies
       # ------------------------------------------------------
 
       - name: Install Backend Dependencies
@@ -93,7 +106,17 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 5: Build Strapi Backend
+      # Step 6: Update Browserslist
+      # ------------------------------------------------------
+
+      - name: Update Browserslist
+        working-directory: ./backend/vastites-cms
+        run: |
+          npx update-browserslist-db@latest
+
+
+      # ------------------------------------------------------
+      # Step 7: Build Strapi Backend
       # ------------------------------------------------------
 
       - name: Build Backend
@@ -103,7 +126,7 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 6: CI Success
+      # Step 8: CI Success
       # ------------------------------------------------------
 
       - name: Backend CI Successful
@@ -166,19 +189,6 @@ jobs:
 
       # ------------------------------------------------------
       # Step 5: Deploy Backend Source Files
-      # ------------------------------------------------------
-      #
-      # Important:
-      # We do NOT deploy:
-      #
-      # .env
-      # node_modules
-      # .strapi
-      # dist
-      # data
-      #
-      # These are preserved on the production server.
-      #
       # ------------------------------------------------------
 
       - name: Deploy Backend Files
