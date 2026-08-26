@@ -19,10 +19,11 @@
 #   3. Prepares deployment directory
 #   4. Deploys backend source files
 #   5. Creates production .env
-#   6. Installs dependencies on EC2
-#   7. Builds Strapi on EC2
-#   8. Restarts PM2 backend
-#   9. Verifies deployment
+#   6. Fixes node_modules ownership
+#   7. Installs dependencies on EC2
+#   8. Builds Strapi on EC2
+#   9. Restarts PM2 backend
+#  10. Verifies deployment
 #
 # ============================================================
 
@@ -198,7 +199,7 @@ jobs:
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "sudo mkdir -p '${{ secrets.BACKEND_PATH }}' && sudo chown -R '${{ secrets.BACKEND_USER }}':'${{ secrets.BACKEND_USER }}' '${{ secrets.BACKEND_PATH }}'"
+            "sudo mkdir -p '${{ secrets.BACKEND_PATH }}'"
 
 
       # ------------------------------------------------------
@@ -241,7 +242,7 @@ jobs:
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "cd '${{ secrets.BACKEND_PATH }}' && sudo -u backend npm ci"
+            "sudo chown -R backend:backend '${{ secrets.BACKEND_PATH }}/node_modules' && cd '${{ secrets.BACKEND_PATH }}' && sudo -u backend npm ci"
 
 
       # ------------------------------------------------------
