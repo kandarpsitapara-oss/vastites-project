@@ -1,51 +1,14 @@
 # ============================================================
 # Vastites Backend CI/CD Pipeline
 # ============================================================
-#
-# This workflow performs:
-#
-# CI:
-#   1. Checkout repository
-#   2. Check Node.js and npm
-#   3. Create backend .env
-#   4. Clean dist directory (FIX #1)
-#   5. Cache npm dependencies
-#   6. Install dependencies
-#   7. Update Browserslist database
-#   8. Build Strapi backend
-#
-# CD:
-#   1. Runs only after CI succeeds
-#   2. Connects to EC2 using SSH
-#   3. Prepares deployment directory
-#   4. Deploys backend source files
-#   5. Creates production .env
-#   6. Clean node_modules and dist on EC2 (FIX #3)
-#   7. Installs dependencies on EC2
-#   8. Builds Strapi on EC2
-#   9. Restarts PM2 backend
-#  10. Verifies deployment
-#
-# ============================================================
 
 name: Vastites Backend CI/CD
-
-
-# ============================================================
-# WORKFLOW TRIGGERS
-# ============================================================
 
 on:
   push:
     branches:
       - main
-
   workflow_dispatch:
-
-
-# ============================================================
-# JOBS
-# ============================================================
 
 jobs:
 
@@ -59,27 +22,13 @@ jobs:
 
     steps:
 
-      # ------------------------------------------------------
-      # Step 1: Checkout Repository
-      # ------------------------------------------------------
-
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-
-      # ------------------------------------------------------
-      # Step 2: Check Node.js and npm
-      # ------------------------------------------------------
 
       - name: Check Node.js and npm
         run: |
           node -v
           npm -v
-
-
-      # ------------------------------------------------------
-      # Step 3: Create Backend .env
-      # ------------------------------------------------------
 
       - name: Create Backend .env
         working-directory: ./backend/vastites-cms
@@ -87,22 +36,12 @@ jobs:
           printf '%s\n' "${{ secrets.STRAPI_ENV }}" > .env
           echo "✓ .env file created"
 
-
-      # ======================================================
-      # Step 4: Clean dist Directory (FIX #1)
-      # ======================================================
-
       - name: Clean dist directory
         working-directory: ./backend/vastites-cms
         run: |
           rm -rf dist .strapi || true
           mkdir -p dist
           echo "✓ dist and .strapi directories cleaned"
-
-
-      # ------------------------------------------------------
-      # Step 5: Cache npm Dependencies
-      # ------------------------------------------------------
 
       - name: Cache npm dependencies
         uses: actions/cache@v4
@@ -112,30 +51,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-backend-npm-
 
-
-      # ------------------------------------------------------
-      # Step 6: Install Backend Dependencies
-      # ------------------------------------------------------
-
       - name: Install Backend Dependencies
         working-directory: ./backend/vastites-cms
         run: |
           npm ci
 
-
-      # ------------------------------------------------------
-      # Step 7: Update Browserslist
-      # ------------------------------------------------------
-
       - name: Update Browserslist
         working-directory: ./backend/vastites-cms
         run: |
           npx update-browserslist-db@latest
-
-
-      # ======================================================
-      # Step 8: Verify Environment Variables (FIX #2)
-      # ======================================================
 
       - name: Verify Required Environment Variables
         working-directory: ./backend/vastites-cms
@@ -147,20 +71,10 @@ jobs:
             exit 1
           fi
 
-
-      # ======================================================
-      # Step 9: Build Strapi Backend
-      # ======================================================
-
       - name: Build Backend
         working-directory: ./backend/vastites-cms
         run: |
           npm run build
-
-
-      # ======================================================
-      # Step 10: CI Success
-      # ======================================================
 
       - name: Backend CI Successful
         run: |
@@ -181,37 +95,18 @@ jobs:
 
     steps:
 
-      # ------------------------------------------------------
-      # Step 1: Checkout Repository
-      # ------------------------------------------------------
-
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-
-      # ------------------------------------------------------
-      # Step 2: Setup SSH
-      # ------------------------------------------------------
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-
-      # ------------------------------------------------------
-      # Step 3: Add EC2 Server to known_hosts
-      # ------------------------------------------------------
-
       - name: Add EC2 Host to known_hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H "${{ secrets.BACKEND_HOST }}" >> ~/.ssh/known_hosts
-
-
-      # ------------------------------------------------------
-      # Step 4: Test SSH Connection
-      # ------------------------------------------------------
 
       - name: Test SSH Connection
         run: |
@@ -219,32 +114,17 @@ jobs:
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "echo '✓ Backend SSH connection successful.'"
 
-
-      # ------------------------------------------------------
-      # Step 5: Prepare Deployment Directory
-      # ------------------------------------------------------
-
       - name: Prepare Deployment Directory
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "sudo mkdir -p '${{ secrets.BACKEND_PATH }}' && sudo chown -R '${{ secrets.BACKEND_USER }}:${{ secrets.BACKEND_USER }}' '${{ secrets.BACKEND_PATH }}'"
 
-
-      # ======================================================
-      # Step 6: Clean node_modules and dist on EC2 (FIX #3, #4)
-      # ======================================================
-
       - name: Clean node_modules and dist on EC2
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "rm -rf '${{ secrets.BACKEND_PATH }}/node_modules' '${{ secrets.BACKEND_PATH }}/dist' '${{ secrets.BACKEND_PATH }}/.strapi' || true && echo '✓ Directories cleaned on EC2'"
-
-
-      # ======================================================
-      # Step 7: Deploy Backend Source Files
-      # ======================================================
 
       - name: Deploy Backend Files
         run: |
@@ -258,11 +138,6 @@ jobs:
             ./backend/vastites-cms/ \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}:${{ secrets.BACKEND_PATH }}/"
 
-
-      # ======================================================
-      # Step 8: Create Production .env
-      # ======================================================
-
       - name: Create Backend .env on EC2
         run: |
           printf '%s\n' "${{ secrets.STRAPI_ENV }}" > backend.env
@@ -274,21 +149,11 @@ jobs:
           rm -f backend.env
           echo "✓ .env file created on EC2"
 
-
-      # ======================================================
-      # Step 9: Install Backend Dependencies on EC2
-      # ======================================================
-
       - name: Install Backend Dependencies on EC2
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "cd '${{ secrets.BACKEND_PATH }}' && npm ci && echo '✓ Dependencies installed on EC2'"
-
-
-      # ======================================================
-      # Step 10: Build Backend on EC2
-      # ======================================================
 
       - name: Build Backend on EC2
         run: |
@@ -296,33 +161,17 @@ jobs:
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "cd '${{ secrets.BACKEND_PATH }}' && npm run build && echo '✓ Build completed on EC2'"
 
-
-      # ======================================================
-      # Step 11: Restart PM2 Backend (FIXED)
-      # ======================================================
-
       - name: Restart Backend with PM2
         run: |
-         ssh \
-           "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-           "cd '${{ secrets.BACKEND_PATH }}' && if pm2 list | grep -q strapi-backend; then pm2 restart strapi-backend --update-env; else pm2 start ecosystem.config.js --update-env; fi && echo '✓ PM2 process સંચાલિત થયો'"
-            
-
-
-      # ======================================================
-      # Step 12: Verify Backend
-      # ======================================================
+          ssh \
+            "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
+            "cd '${{ secrets.BACKEND_PATH }}' && if pm2 list | grep -q strapi-backend; then pm2 restart strapi-backend --update-env; else pm2 start ecosystem.config.js --update-env; fi && echo '✓ PM2 process managed successfully'"
 
       - name: Verify Backend
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
             "pm2 list && echo '✓ Backend verification completed'"
-
-
-      # ======================================================
-      # Step 13: CD Success
-      # ======================================================
 
       - name: Backend CD Successful
         run: |
