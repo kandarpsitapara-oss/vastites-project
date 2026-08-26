@@ -96,13 +96,14 @@ jobs:
 
 
       # ------------------------------------------------------
-      # Step 5: Install Backend Dependencies
+      # Step 5: Prepare Deployment Directory
       # ------------------------------------------------------
 
-      - name: Install Backend Dependencies
-        working-directory: ./backend/vastites-cms
+      - name: Prepare Deployment Directory
         run: |
-          npm ci
+          ssh \
+            "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
+            "sudo mkdir -p '${{ secrets.BACKEND_PATH }}' && sudo chown -R '${{ secrets.BACKEND_USER }}':'${{ secrets.BACKEND_USER }}' '${{ secrets.BACKEND_PATH }}'"
 
 
       # ------------------------------------------------------
