@@ -298,14 +298,14 @@ jobs:
 
 
       # ======================================================
-      # Step 11: Restart PM2 Backend
+      # Step 11: Restart PM2 Backend (FIXED)
       # ======================================================
 
       - name: Restart Backend with PM2
         run: |
           ssh \
             "${{ secrets.BACKEND_USER }}@${{ secrets.BACKEND_HOST }}" \
-            "pm2 restart strapi-backend --update-env && echo '✓ PM2 restarted'"
+            "cd '${{ secrets.BACKEND_PATH }}' && pm2 start dist/index.js --name strapi-backend --update-env 2>/dev/null || pm2 restart strapi-backend --update-env && echo '✓ PM2 restarted'"
 
 
       # ======================================================
