@@ -231,9 +231,8 @@ jobs:
       #
       - name: Deploy Frontend Files
         run: |
-          rsync -avz --delete \
+          rsync -vzr --delete --no-times --no-perms \
             --exclude=".git" \
-             --no-times \
             --exclude=".env" \
             --exclude="node_modules" \
             ./frontend/ \
