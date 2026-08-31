@@ -1,0 +1,8 @@
+node_modules
+.env
+.git
+.github
+.tmp
+.cache
+dist
+.DS_Store
